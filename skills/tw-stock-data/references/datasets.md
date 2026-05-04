@@ -1,6 +1,6 @@
 # Dataset Catalog
 
-Use `tw-stock list-datasets --json` for the authoritative machine-readable catalog. If the CLI is not installed globally and you are inside the `tw-stock-cli` project, use `uv run tw-stock list-datasets --json`.
+Use `tw-stock list-datasets --json` for the authoritative machine-readable catalog. If the CLI is not installed globally and you are inside the `tw-stock-cli` project, use `uv run tw-stock list-datasets --json`. From another directory, use `uv run --project /path/to/tw-stock-cli tw-stock list-datasets --json`.
 
 ## TWSE
 

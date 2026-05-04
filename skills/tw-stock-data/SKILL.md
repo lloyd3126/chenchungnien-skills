@@ -3,7 +3,7 @@ name: tw-stock-data
 description: Fetch, validate, and analyze Taiwan stock, OTC, futures, options, and MOPS financial datasets using the tw-stock CLI. Use whenever the user asks for TWSE, TPEX, TAIFEX, MOPS, 台股, 上市櫃, 期貨, 選擇權, 法人買賣超, 融資融券, 外資持股, 股價, 月營收, 財報, or Taiwan market data, even if they do not mention the CLI.
 compatibility: Requires Python 3.10+, uv, network access, and the tw-stock CLI from the tw-stock-cli project.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Taiwan Stock Data
@@ -19,7 +19,7 @@ This skill does not bundle the market data crawler itself. It expects the `tw-st
 Use commands in this order:
 
 1. If `tw-stock` is installed in the current environment, call `tw-stock ...`.
-2. If working inside a checkout of the `tw-stock-cli` project, call `uv run tw-stock ...` from that repository root.
+2. If working inside a checkout of the `tw-stock-cli` project, call `uv run tw-stock ...` from that repository root, or use `uv run --project /path/to/tw-stock-cli tw-stock ...` when running from another directory.
 3. If neither command is available, tell the user that the skill can identify the right dataset and command, but fetching requires installing or opening the `tw-stock-cli` project.
 
 ## First steps
@@ -44,6 +44,13 @@ Use commands in this order:
    ```bash
    tw-stock fetch twse.stock-price --date 2026-04-30 --format jsonl
    tw-stock fetch twse.stock-price --date 2026-04-30 --format csv --output data.csv
+   ```
+
+5. Use metadata-only flags before fetching when the user needs schema or source context:
+
+   ```bash
+   tw-stock fetch twse.stock-price --schema-only --format json
+   tw-stock fetch twse.stock-price --source-url-only --format json
    ```
 
 ## Dataset selection
