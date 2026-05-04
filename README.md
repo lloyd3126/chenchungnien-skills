@@ -15,6 +15,7 @@ Each skill in this repository is designed to be practical, maintainable, and cle
 | Skill | Description |
 | :--- | :--- |
 | [`tw-gov-data`](skills/tw-gov-data) | Discover, inspect, compare, and summarize datasets from Taiwan's government open data platform, `data.gov.tw`. |
+| [`tw-stock-data`](skills/tw-stock-data) | Fetch, validate, and analyze Taiwan stock, OTC, futures, options, and MOPS financial datasets using the `tw-stock` CLI. |
 
 ## Installation
 
@@ -28,4 +29,5 @@ npx skills add lloyd3126/chenchungnien-skills --list
 
 # Install a specific skill globally.
 npx skills add lloyd3126/chenchungnien-skills --skill tw-gov-data --global
+npx skills add lloyd3126/chenchungnien-skills --skill tw-stock-data --global
 ```

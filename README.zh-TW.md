@@ -15,6 +15,7 @@
 | Skill | 說明 |
 | :--- | :--- |
 | [`tw-gov-data`](skills/tw-gov-data) | 用來探索、檢視、比較與整理台灣政府開放資料平台 `data.gov.tw` 上的資料集。 |
+| [`tw-stock-data`](skills/tw-stock-data) | 使用 `tw-stock` CLI 抓取、驗證與分析台灣上市櫃、期貨、選擇權與公開資訊觀測站財務資料。 |
 
 ## Installation
 
@@ -28,4 +29,5 @@ npx skills add lloyd3126/chenchungnien-skills --list
 
 # 全域安裝指定 skill。
 npx skills add lloyd3126/chenchungnien-skills --skill tw-gov-data --global
+npx skills add lloyd3126/chenchungnien-skills --skill tw-stock-data --global
 ```

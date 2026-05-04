@@ -1,0 +1,7 @@
+interface:
+  display_name: "Taiwan Stock Data"
+  short_description: "Fetch and analyze Taiwan stock, OTC, futures, options, and MOPS datasets."
+  default_prompt: "Use $tw-stock-data to discover Taiwan market datasets, fetch data with the tw-stock CLI, validate results, and prepare analysis-ready exports."
+
+policy:
+  allow_implicit_invocation: true
