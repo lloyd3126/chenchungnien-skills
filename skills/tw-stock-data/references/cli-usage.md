@@ -12,12 +12,14 @@ tw-stock list-datasets --group twse --json
 tw-stock describe twse.stock-price --json
 ```
 
+Use `describe` or `--schema-only` whenever exact output columns matter. The CLI normalizes common columns to English `snake_case`, and references should not assume old source-language column names.
+
 ## Fetching
 
 ```bash
 tw-stock fetch twse.stock-price --date 2026-04-30 --format table
 tw-stock fetch twse.stock-price --date 2026-04-30 --format jsonl
-tw-stock fetch twse.stock-price --date 2026-04-30 --columns stock_id,stock_name,close --format csv
+tw-stock fetch twse.stock-price --date 2026-04-30 --columns stock_id,stock_name,open,high,low,close --format csv
 tw-stock fetch twse.stock-price --date 2026-04-30 --limit 10 --format json
 ```
 
@@ -44,9 +46,23 @@ tw-stock fetch mops.month-revenue --year 115 --month 3 --market sii --format jso
 tw-stock fetch mops.month-revenue --year 2026 --month 3 --market sii --format csv --output revenue.csv
 tw-stock fetch mops.month-revenue --year 115 --month 3 --market sii --foreign 1 --format json
 tw-stock fetch mops.income-statement --year 114 --quarter 4 --market sii --format json
+tw-stock fetch mops.company-cash-flow --stock-id 2395 --year 2025 --quarter 4 --market sii --format json
+tw-stock fetch mops.employee-welfare-policy --stock-id 2395 --year 2025 --market all --format json
+tw-stock fetch mops.esg-company-disclosure --stock-id 2395 --year 2024 --market sii --format json
+tw-stock fetch mops.investor-conference --stock-id 2395 --year 2025 --market sii --limit 5 --format json
 ```
 
 MOPS financial statements return multiple tables. Prefer `json` or `jsonl`.
+
+MOPS PDF/electronic-book datasets return metadata and download URLs by design. Use the URL fields when the user wants to download/read the original filing instead of forcing PDF table extraction.
+
+## Column examples
+
+- Stock price datasets use `stock_id`, `stock_name`, `open`, `high`, `low`, `close`, `date`.
+- PER/PBR datasets use lowercase `per` and `pbr`.
+- Institutional trading datasets use fields such as `foreign_total_net_buy`, `investment_trust_net_buy`, `dealer_total_net_buy`, and `institutional_net_buy`.
+- Margin trading datasets use fields such as `margin_purchase_balance` and `short_sale_balance`.
+- TAIFEX FCM volume datasets use fields such as `fcm_id`, `fcm_name`, `subtotal`, `total`, and `market_share`.
 
 ## Validation
 

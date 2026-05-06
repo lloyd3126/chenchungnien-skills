@@ -3,7 +3,7 @@ name: tw-stock-data
 description: Fetch, validate, and analyze Taiwan stock, OTC, futures, options, and MOPS financial datasets using the tw-stock CLI. Use whenever the user asks for TWSE, TPEX, TAIFEX, MOPS, 台股, 上市櫃, 期貨, 選擇權, 法人買賣超, 融資融券, 外資持股, 股價, 月營收, 財報, or Taiwan market data, even if they do not mention the CLI.
 compatibility: Requires Python 3.10+, uv, network access, and the tw-stock CLI from the tw-stock-cli project.
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Taiwan Stock Data
@@ -11,6 +11,8 @@ metadata:
 Use this skill to help users discover, fetch, validate, and analyze Taiwan market datasets exposed by the `tw-stock` CLI.
 
 The CLI is the source of truth. Prefer calling `tw-stock` or `uv run tw-stock` instead of reimplementing crawler logic in the agent.
+
+The current CLI normalizes common output columns to English `snake_case`. Before writing analysis code that depends on exact columns, inspect `tw-stock describe <dataset> --json`, `tw-stock fetch <dataset> --schema-only --format json`, or [references/datasets.md](references/datasets.md).
 
 ## Dependency
 
@@ -65,9 +67,21 @@ Use these common mappings:
 - Foreign holdings: `twse.foreign-holding`, `tpex.foreign-holding`
 - Total return indices: `twse.total-return-index`, `tpex.total-return-index`
 - Futures and options market data: `taifex.*`
-- Monthly revenue and financial statements: `mops.*`
+- Monthly revenue and financial statements: `mops.month-revenue`, `mops.company-*`, `mops.income-statement`, `mops.balance-sheet`, `mops.cash-flow`
+- MOPS PDF/electronic-book download indexes: `mops.financial-report-electronic-book`, `mops.annual-report-electronic-book`, `mops.related-company-reports`, `mops.sustainability-report`, `mops.major-shareholder-relationship`
+- MOPS governance, ESG, insiders, related-party, and corporate actions: inspect [references/datasets.md](references/datasets.md) and prefer the exact `mops.*` dataset before scraping MOPS manually.
 
 For the complete list, read [references/datasets.md](references/datasets.md).
+
+## Column expectations
+
+Use normalized column names from the current CLI:
+
+- Price columns are `open`, `high`, `low`, `close`; do not assume old names such as `max` or `min`.
+- Valuation columns are `per` and `pbr`; do not assume old uppercase names such as `PER` or `PBR`.
+- Security identifiers are `stock_id` and `stock_name`.
+- TAIFEX FCM outputs use `fcm_id`, `fcm_name`, `subtotal`, `total`, `market_share`, product columns such as `mtx`, and total product columns such as `total_mtx`.
+- MOPS statement line items may remain in Chinese, but shared identifier columns are normalized to `stock_id` and `stock_name`.
 
 ## Safety and data quality
 
