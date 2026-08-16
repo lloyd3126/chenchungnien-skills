@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website Skill Builder"
+  short_description: "Explore sites in the built-in browser and build skills"
+  default_prompt: "Use $website-skill-builder in the Codex in-app browser: first attempt a same-site sitemap inventory, validate it through the public UI, then, after manual sign-in, re-check those areas and explore protected functionality if I approve."

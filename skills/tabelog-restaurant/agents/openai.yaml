@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tabelog Restaurant"
+  short_description: "Inspect Tabelog restaurant detail pages in the in-app browser."
+  default_prompt: "Use $tabelog-restaurant in the Codex in-app browser to inspect a Tabelog restaurant and verify its current details, menu, reviews, photos, ratings, seats, or map."

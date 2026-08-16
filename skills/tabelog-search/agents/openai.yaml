@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tabelog Search"
+  short_description: "Search and filter public Tabelog listings in the in-app browser."
+  default_prompt: "Use $tabelog-search in the Codex in-app browser to search Tabelog, apply safe filters, and verify current results."
+
+policy:
+  allow_implicit_invocation: true

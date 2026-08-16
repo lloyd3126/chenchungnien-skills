@@ -1,0 +1,54 @@
+# 食べログ（Tabelog）網站操作指引
+
+## Scope
+
+這份指引只適用於透過 Codex 內建瀏覽器操作 `https://tabelog.com/`。它整理網站的穩定導覽、公開查詢流程、餐廳資料頁與登入邊界；目前探索的是公開狀態，動態數值必須每次重新從頁面取得。
+
+## Global routing
+
+- 想依地區、車站、關鍵字、料理、預算、營業時段或用餐條件找店 → `$tabelog-search`。
+- 已知餐廳結果卡片、餐廳名稱或餐廳 URL，想查看基本資料、座位、菜單、照片、口コミ、評分分布或地圖 → `$tabelog-restaurant`。
+- 需要理解口コミ意義、評分限制或投稿規範 → 讀取 `sites/tabelog/references/first-party-guidance.md`，必要時開啟其中的一方說明頁重新確認。
+
+## Navigation
+
+- 首頁：`https://tabelog.com/`；提供地區、料理ジャンル、特集、利用シーン、こだわり條件、排名與站內搜尋入口。
+- Sitemap：`/sitemap/` → 都道府縣 → 區域 → 五十音 → 餐廳詳情；先用它建立候選 routing，再以首頁與頁面 UI 驗證功能。
+- 搜尋／結果列表：通常是 `/rstLst/` 或帶地區、料理、條件的 `/rstLst/...`；從結果卡片進入餐廳詳情。
+- 地區索引：國家／都道府縣／區域／車站層級，常見路徑如 `/tokyo/`、`/tokyo/A1316/`。
+- 全國排名：`/rank/`；料理排名通常是 `/<genre>/rank/`。
+- 餐廳詳情：`/<prefecture>/<area>/<subarea>/<restaurant-id>/`；子頁通常是 `table/`、`dtlmenu/`、`dtlphotolst/...`、`dtlrvwlst/`、`dtlratings/`、`dtlmap/`。
+- 說明與規範：`/help/beginner/`、`/help/r_about_review/`、`/help/review_guide/`、`/help/policy/`。
+- 登入入口：`/account/login/`；`保有Vポイント`、`行ったお店`、`保存リスト`、`無料会員登録/ログイン`、`行った`、`保存`、`投稿` 等入口可能導向登入。
+
+## Operating rules
+
+- 只使用 Codex 內建瀏覽器；不要改用 Chrome、外部瀏覽器、API、爬蟲、cookies、local storage 或 session 檔案。
+- 先完成公開區域與第二輪公開核對。遇到登入牆時記錄入口並繼續探索不需登入的功能，不要在第一個登入牆停下來。
+- 公開探索完成後，才詢問使用者是否要探索登入後功能。只有使用者同意後，才請使用者在同一個內建瀏覽器分頁手動登入；不要代填密碼或讀取登入資料。
+- 登入後視為另一個網站變體：重新檢查首頁、導覽、結果頁、餐廳詳情、主要工作流程，以及公開時走過的搜尋欄、篩選器、下拉選單和其他表單控制項，再記錄差異。
+- 預設只做讀取與可逆的安全互動。不要為探索而送出訂位、發佈口コミ／照片、保存、標記「行った」、付款、刪除或其他不可逆確認。
+- 使用網站自己提供的定義、說明和規範；口コミ是使用者實際用餐後的主觀感想，不等同於餐廳的絕對品質或已驗證事實。
+- 評分、排名、店舖狀態、空席、價格、口コミ數、照片數與搜尋結果都是動態資料；回覆任務時重新查詢並記錄查詢條件、日期、時間、人數與篩選條件。
+- 搜尋的 `エリア・駅` 欄是 autocomplete；必須等待並選取具體建議（例如車站或帶都道府縣的地區），不能只填文字後直接提交。提交前後要核對區域 heading 或 URL 的區域／車站參數。
+
+## Drift maintenance
+
+- 未來操作前先比對目前內建瀏覽器中的頁面、路由、標籤、控制項、權限與本文件／skills。
+- 如果網站的穩定操作方式已改變，先以目前 UI 為準完成安全任務，再把已驗證的差異自動更新回負責的 `AGENTS.md`、skill 或 reference。
+- 更新時記錄公開／登入狀態、頁面類型、原有行為、目前行為與驗證方式；不要寫入密碼、cookies、tokens、私人資料或動態結果值。
+- 若差異只是一筆價格、排名、空席、口コミ數或搜尋結果，更新重新取得資料的路徑，不要把數值寫死。
+- 修改後重新執行受影響的安全流程與 skill validator；遇到廣泛或不確定的變更時，先標記 maintenance gap，不要猜測。
+
+## Validation and freshness
+
+- 搜尋或篩選後，至少確認頁面標題／主要 heading、結果條件摘要、選單目前值或 URL query state 其中兩項；不要只依按鈕點擊成功判斷。
+- 餐廳資料應以該餐廳詳情頁目前可見欄位為準，並在需要時分別查看 `店舗情報（詳細）`、口コミ、照片、菜單、評分與地圖子頁。
+- 口コミ頁會提醒內容可能與最新狀態不同；涉及營業時間、價格、空席或付款方式時，提醒使用者向店家確認。
+- 若內建瀏覽器出現 CAPTCHA、安全攔截或無法判斷的第三方登入流程，停止該分支並回報，不嘗試繞過。
+
+## References
+
+- [site-map.md](references/site-map.md)：公開資訊架構、頁面類型、已驗證互動與登入邊界。
+- [data-model.md](references/data-model.md)：Restaurant、Listing、Review、Menu、Photo、Rating 與 Reservation availability 的關係。
+- [first-party-guidance.md](references/first-party-guidance.md)：食べログ自己對口コミ、評分和投稿規範的說明。
