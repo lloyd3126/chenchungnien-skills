@@ -20,6 +20,9 @@ Each skill in this repository is designed to be practical, maintainable, and cle
 | [`reuters-news-search`](skills/reuters-news-search) | Search and filter current Reuters coverage through the built-in browser. |
 | [`reuters-market-data`](skills/reuters-market-data) | Inspect Reuters Markets sections, regional tabs, quote tables, and delayed LSEG data. |
 | [`reuters-article-research`](skills/reuters-article-research) | Read Reuters article details, visible source context, media, and access state. |
+| [`globenewswire-search`](skills/globenewswire-search) | Search and verify public GlobeNewswire newsroom releases by keyword, category, organization, or tag. |
+| [`globenewswire-release`](skills/globenewswire-release) | Inspect public GlobeNewswire release metadata, body structure, tags, links, and related-release routes. |
+| [`globenewswire-rss`](skills/globenewswire-rss) | Locate and verify public GlobeNewswire RSS, ATOM, and JavaScript widget feeds. |
 | [`tabelog-search`](skills/tabelog-search) | Search and filter public Tabelog listings in Codex's built-in browser, including autocomplete-based area selection and result verification. |
 | [`tabelog-restaurant`](skills/tabelog-restaurant) | Inspect Tabelog restaurant pages and related menus, photos, reviews, ratings, maps, and availability through the built-in browser. |
 | [`koding-school-learning`](skills/koding-school-learning) | Browse koding.school courses, enrolled-course filters, course details, and lesson page variants through the built-in browser. |
@@ -41,6 +44,8 @@ The [Tabelog site package](sites/tabelog/AGENTS.md) provides routing, session, f
 The [X site package](sites/x/AGENTS.md) provides shared routing, autocomplete, post/profile data-model, session, and safety guidance for the X skills. Its [references](sites/x/references) document verified page types and interaction rules.
 
 The [Statement Dog site package](sites/statementdog/AGENTS.md) provides shared routing, authentication, freshness, and verification guidance for the four Statement Dog skills. Its [references](sites/statementdog/references) document the site map, data model, form controls, and first-party explanations.
+The [GlobeNewswire site package](sites/globenewswire/AGENTS.md) provides shared public newsroom, release, RSS, freshness, evidence, and authentication-boundary guidance for the three GlobeNewswire skills. Its [references](sites/globenewswire/references) document verified routes, the public data model, and first-party terminology.
+
 The [Reuters site package](sites/reuters/AGENTS.md) provides shared public-navigation, sitemap, search, Markets, article, freshness, source, and safety guidance for the Reuters skills. Its [references](sites/reuters/references) document the route map, data model, controls, first-party guidance, and agent usability scenarios.
 
 The [橘蘋學習平台 site package](sites/koding-school/AGENTS.md) provides routing, public/authenticated session boundaries, freshness rules, and safe-operation guidance for the koding.school skills. Its skill references document the verified course, discussion, project, and studio page types.
@@ -55,6 +60,8 @@ For X tasks, route by intent to `x-home-feed`, `x-profile`, `x-search`, or `x-po
 
 For Reuters tasks, use `reuters-news-search` for site search and filters, `reuters-market-data` for Markets, quotes, tables, and regional tabs, and `reuters-article-research` for article details and source context. Keep current headlines, result counts, article text, rankings, prices, yields, and account data dynamic; stop before Save, Share, Subscribe, account, or purchase actions.
 For Statement Dog tasks, route by intent to `statementdog-stock-analysis`, `statementdog-screening`, `statementdog-market`, or `statementdog-watchlist`. Future agents should compare the live UI with `sites/statementdog/AGENTS.md` and keep financial values, rankings, articles, market data, and account data dynamic.
+
+For GlobeNewswire tasks, use `globenewswire-search` for public discovery, `globenewswire-release` for a specific release, and `globenewswire-rss` for syndication feeds. Keep current release rows, timestamps, tags, feed entries, and account data dynamic; stop at login, CAPTCHA, registration, publishing, sharing, or other irreversible actions.
 
 For koding.school tasks, route course and lesson work to `koding-school-learning`, knowledge and discussion work to `koding-school-community`, and project/studio/account-entry work to `koding-school-projects`. Keep current progress, project records, messages, and other account data dynamic and private.
 
@@ -72,6 +79,9 @@ npx skills add lloyd3126/chenchungnien-skills --list
 npx skills add lloyd3126/chenchungnien-skills --skill tw-gov-data --global
 npx skills add lloyd3126/chenchungnien-skills --skill tw-stock-data --global
 npx skills add lloyd3126/chenchungnien-skills --skill website-skill-builder --global
+npx skills add lloyd3126/chenchungnien-skills --skill globenewswire-search --global
+npx skills add lloyd3126/chenchungnien-skills --skill globenewswire-release --global
+npx skills add lloyd3126/chenchungnien-skills --skill globenewswire-rss --global
 npx skills add lloyd3126/chenchungnien-skills --skill tabelog-search --global
 npx skills add lloyd3126/chenchungnien-skills --skill tabelog-restaurant --global
 npx skills add lloyd3126/chenchungnien-skills --skill statementdog-stock-analysis --global

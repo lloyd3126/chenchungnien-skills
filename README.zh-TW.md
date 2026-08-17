@@ -20,6 +20,9 @@
 | [`reuters-news-search`](skills/reuters-news-search) | 透過內建瀏覽器搜尋與篩選 Reuters 最新新聞。 |
 | [`reuters-market-data`](skills/reuters-market-data) | 檢視 Reuters Markets 分類、區域分頁、行情表格與延遲的 LSEG 資料。 |
 | [`reuters-article-research`](skills/reuters-article-research) | 讀取 Reuters 文章詳情、可見來源脈絡、媒體與存取狀態。 |
+| [`globenewswire-search`](skills/globenewswire-search) | 依關鍵字、分類、公司發布者或 tag 搜尋與驗證 GlobeNewswire 公開新聞稿。 |
+| [`globenewswire-release`](skills/globenewswire-release) | 檢視 GlobeNewswire 公開新聞稿的 metadata、正文結構、tags、連結與相關新聞稿路由。 |
+| [`globenewswire-rss`](skills/globenewswire-rss) | 找出並驗證 GlobeNewswire 公開 RSS、ATOM 與 JavaScript widget feed。 |
 | [`tabelog-search`](skills/tabelog-search) | 在 Codex 內建瀏覽器中搜尋與篩選 Tabelog 公開餐廳資料，包含使用自動完成選取地區與驗證搜尋結果。 |
 | [`tabelog-restaurant`](skills/tabelog-restaurant) | 透過內建瀏覽器查看 Tabelog 餐廳頁面，以及菜單、照片、評論、評分、地圖與空位等相關頁面。 |
 | [`koding-school-learning`](skills/koding-school-learning) | 透過內建瀏覽器瀏覽 koding.school 課程、已加入課程篩選、課程詳情與 lesson 頁型。 |
@@ -41,6 +44,8 @@
 [X 網站套件](sites/x/AGENTS.md)提供 X skills 共用的導覽、搜尋 autocomplete、貼文／個人頁資料模型、session 與安全邊界；[references](sites/x/references)記錄已驗證頁型與互動規則。
 
 [財報狗網站套件](sites/statementdog/AGENTS.md)提供四個財報狗 skills 共用的導覽、登入、資料新鮮度與驗證原則；[references](sites/statementdog/references)則記錄網站地圖、資料模型、表單控制項與網站第一方說明。
+[GlobeNewswire 網站套件](sites/globenewswire/AGENTS.md)提供三個 GlobeNewswire skills 共用的公開 Newsroom、新聞稿、RSS、資料新鮮度、證據層級與登入邊界指引；[references](sites/globenewswire/references)記錄已驗證路由、公開資料模型與網站第一方術語。
+
 [`Reuters 網站套件`](sites/reuters/AGENTS.md)提供 Reuters skills 共用的公開導覽、sitemap、搜尋、Markets、文章、資料新鮮度、來源與安全操作指引；[`references`](sites/reuters/references)記錄路由地圖、資料模型、控制項、第一方說明與 Agent 可用性情境。
 
 [橘蘋學習平台網站套件](sites/koding-school/AGENTS.md)提供 koding.school skills 共用的導覽、公開／登入狀態、安全邊界與資料新鮮度規則；各 skill 的 references 記錄已驗證的課程、討論、作品與工作室頁型。
@@ -55,6 +60,8 @@
 
 處理 Reuters 任務時，站內搜尋與篩選使用 `reuters-news-search`，Markets、行情、表格與區域分頁使用 `reuters-market-data`，文章詳情與來源脈絡使用 `reuters-article-research`。目前標題、結果數量、文章內容、排名、價格、殖利率與帳戶資料都必須動態重新取得，並在 Save、Share、Subscribe、帳號或購買操作前停止。
 處理財報狗任務時，依意圖使用 `statementdog-stock-analysis`、`statementdog-screening`、`statementdog-market` 或 `statementdog-watchlist`。未來 Agent 應將即時 UI 與 `sites/statementdog/AGENTS.md` 比對，並保留財務數值、排行榜、文章、市場資料與帳號資料的動態性。
+
+處理 GlobeNewswire 任務時，公開搜尋使用 `globenewswire-search`，特定新聞稿使用 `globenewswire-release`，RSS／ATOM／JavaScript feed 使用 `globenewswire-rss`。目前新聞稿、時間、tags、feed entries 與帳號資料都必須動態重新取得，並在登入、CAPTCHA、註冊、發布、分享或其他不可逆操作前停止。
 
 處理 koding.school 任務時，課程與 lesson 使用 `koding-school-learning`，知識點與討論使用 `koding-school-community`，作品／工作室／帳號入口使用 `koding-school-projects`。目前進度、作品紀錄、訊息與其他帳戶資料都必須保留為動態且私人資訊。
 
@@ -72,6 +79,9 @@ npx skills add lloyd3126/chenchungnien-skills --list
 npx skills add lloyd3126/chenchungnien-skills --skill tw-gov-data --global
 npx skills add lloyd3126/chenchungnien-skills --skill tw-stock-data --global
 npx skills add lloyd3126/chenchungnien-skills --skill website-skill-builder --global
+npx skills add lloyd3126/chenchungnien-skills --skill globenewswire-search --global
+npx skills add lloyd3126/chenchungnien-skills --skill globenewswire-release --global
+npx skills add lloyd3126/chenchungnien-skills --skill globenewswire-rss --global
 npx skills add lloyd3126/chenchungnien-skills --skill tabelog-search --global
 npx skills add lloyd3126/chenchungnien-skills --skill tabelog-restaurant --global
 npx skills add lloyd3126/chenchungnien-skills --skill statementdog-stock-analysis --global

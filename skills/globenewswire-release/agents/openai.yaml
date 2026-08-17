@@ -1,0 +1,4 @@
+interface:
+  display_name: "GlobeNewswire Release"
+  short_description: "Inspect public GlobeNewswire press releases"
+  default_prompt: "Use $globenewswire-release to inspect a public GlobeNewswire press release and verify its metadata."
