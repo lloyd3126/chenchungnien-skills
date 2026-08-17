@@ -27,6 +27,10 @@ description: "Use the Codex in-app browser for read-only 教育部因材網 teac
 
 若同頁 modal／選單中的點擊因頁面自動跳轉、session 不穩定或控制器失去元素而無法完成，但 DOM／accessibility snapshot 已讀到該可見項目的實際 `href`，可在同一分頁直接使用該已觀察到的完整連結。不得自行猜測、改寫或拼接 query 參數；開啟後仍須重新擷取 URL、title、screenshot 與 DOM，確認到達的 heading、scope 與下一層控制項。此 fallback 僅適用於唯讀導覽，遇到建立、指派、儲存、送出或其他副作用連結時仍停在確認邊界。
 
+因材網的課程總覽特例：dashboard HTML 會預先包含隱藏的 `.course-main.materialList`（位於 tooltip／overlay 容器），不一定要等 modal 開啟才出現。科目連結可從 `.course-main.materialList a` 讀取；國小清單的年級群組位於 `#elementaryList dl.menu-item`。這些連結在隱藏狀態下可能不被可見元素 locator 找到；若正常點擊無法穩定展開，應使用 DOM 已觀察到的完整 `href` 在同一分頁導覽，並重新驗證結果。
+
+若目前 session 會在 F12、DevTools、頁面 `evaluate()` 或其他注入式檢查後立即導回公開首頁，將其視為疑似防除錯／防自動化或受保護路由狀態，不再反覆執行頁面內 JavaScript。改用已觀察到的完整唯讀 `href` 在同一分頁導覽，並只用截圖確認是否停留在教材頁與單元頁；不要因此推論網站本身不能執行一般 JavaScript。
+
 ## Confirmed read-only workflows
 
 ### 查看任務進度
