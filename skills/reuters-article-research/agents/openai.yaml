@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reuters Article Research"
+  short_description: "Inspect Reuters articles and sources"
+  default_prompt: "Use $reuters-article-research to inspect a Reuters article and verify its visible source context."

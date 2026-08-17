@@ -17,6 +17,9 @@ Each skill in this repository is designed to be practical, maintainable, and cle
 | [`tw-gov-data`](skills/tw-gov-data) | Discover, inspect, compare, and summarize datasets from Taiwan's government open data platform, `data.gov.tw`. |
 | [`tw-stock-data`](skills/tw-stock-data) | Fetch, validate, and analyze Taiwan stock, OTC, futures, options, and MOPS financial datasets using the `tw-stock` CLI. |
 | [`website-skill-builder`](skills/website-skill-builder) | Systematically explore a website in Codex's built-in browser and turn its stable structure, workflows, and data model into reusable agent guidance. |
+| [`reuters-news-search`](skills/reuters-news-search) | Search and filter current Reuters coverage through the built-in browser. |
+| [`reuters-market-data`](skills/reuters-market-data) | Inspect Reuters Markets sections, regional tabs, quote tables, and delayed LSEG data. |
+| [`reuters-article-research`](skills/reuters-article-research) | Read Reuters article details, visible source context, media, and access state. |
 | [`tabelog-search`](skills/tabelog-search) | Search and filter public Tabelog listings in Codex's built-in browser, including autocomplete-based area selection and result verification. |
 | [`tabelog-restaurant`](skills/tabelog-restaurant) | Inspect Tabelog restaurant pages and related menus, photos, reviews, ratings, maps, and availability through the built-in browser. |
 | [`koding-school-learning`](skills/koding-school-learning) | Browse koding.school courses, enrolled-course filters, course details, and lesson page variants through the built-in browser. |
@@ -38,6 +41,7 @@ The [Tabelog site package](sites/tabelog/AGENTS.md) provides routing, session, f
 The [X site package](sites/x/AGENTS.md) provides shared routing, autocomplete, post/profile data-model, session, and safety guidance for the X skills. Its [references](sites/x/references) document verified page types and interaction rules.
 
 The [Statement Dog site package](sites/statementdog/AGENTS.md) provides shared routing, authentication, freshness, and verification guidance for the four Statement Dog skills. Its [references](sites/statementdog/references) document the site map, data model, form controls, and first-party explanations.
+The [Reuters site package](sites/reuters/AGENTS.md) provides shared public-navigation, sitemap, search, Markets, article, freshness, source, and safety guidance for the Reuters skills. Its [references](sites/reuters/references) document the route map, data model, controls, first-party guidance, and agent usability scenarios.
 
 The [橘蘋學習平台 site package](sites/koding-school/AGENTS.md) provides routing, public/authenticated session boundaries, freshness rules, and safe-operation guidance for the koding.school skills. Its skill references document the verified course, discussion, project, and studio page types.
 
@@ -49,6 +53,7 @@ For Tabelog tasks, use `tabelog-search` for listings and filters, and `tabelog-r
 
 For X tasks, route by intent to `x-home-feed`, `x-profile`, `x-search`, or `x-post`. Future agents should compare the live X UI with `sites/x/AGENTS.md` and keep search results, post content, metrics, and account data dynamic.
 
+For Reuters tasks, use `reuters-news-search` for site search and filters, `reuters-market-data` for Markets, quotes, tables, and regional tabs, and `reuters-article-research` for article details and source context. Keep current headlines, result counts, article text, rankings, prices, yields, and account data dynamic; stop before Save, Share, Subscribe, account, or purchase actions.
 For Statement Dog tasks, route by intent to `statementdog-stock-analysis`, `statementdog-screening`, `statementdog-market`, or `statementdog-watchlist`. Future agents should compare the live UI with `sites/statementdog/AGENTS.md` and keep financial values, rankings, articles, market data, and account data dynamic.
 
 For koding.school tasks, route course and lesson work to `koding-school-learning`, knowledge and discussion work to `koding-school-community`, and project/studio/account-entry work to `koding-school-projects`. Keep current progress, project records, messages, and other account data dynamic and private.

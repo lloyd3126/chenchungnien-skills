@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reuters News Search"
+  short_description: "Search Reuters news with filters"
+  default_prompt: "Use $reuters-news-search to search and filter current Reuters coverage."
