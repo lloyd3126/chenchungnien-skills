@@ -11,8 +11,64 @@ Each skill has one clear responsibility. Website packages add shared navigation,
 - To use an existing skill, find the task area below and choose the narrowest matching skill.
 - To understand a supported website as a whole, open the package name; it links to that site's shared `AGENTS.md` guidance.
 - To turn a new website into reusable guidance and skills, use `website-skill-builder`.
+- To see what still needs live validation, check [Known Unverified Workflows](#known-unverified-workflows) before using a package.
 
 Browser-based skills default to current, verifiable page state and read-only exploration. Credentials, session data, live counts, and one-off results do not belong in durable guidance; actions that publish, purchase, submit, message, or change account state require explicit authorization.
+
+## Known Unverified Workflows
+
+This is the repository-wide rollup of gaps explicitly recorded in the site packages. `Unverified` or `partial` means a workflow was not exercised end to end in the available in-app browser session; it does **not** mean the feature is unavailable or does not exist. Re-check the linked source and current UI before relying on any workflow below.
+
+Across every package, state-changing actions—sign-in or sign-out, account edits, save or follow, publishing, commenting, messaging, form submission, booking, purchase, payment, upload, credential or token creation, CAPTCHA, and third-party authorization—remain intentionally untested unless a package explicitly records otherwise and the user authorizes the action.
+
+### Taiwan Public Data, Law, Education, and Libraries
+
+| Package | Unverified or partial workflows |
+| :--- | :--- |
+| [Taiwan Government Open Data](sites/data-gov-tw/references/site-map.md) | `Columns` and statistics pages are route-map only; authenticated comments/account features, RSS payloads, external resources, and download flows were not fully explored. |
+| [TDX](sites/tdx/AGENTS.md) | Personal account details stop at a password gate; purchases, deletion, applications, and other submissions were not exercised. |
+| [Taiwan Judicial legal search](sites/judicial-lawsearch/references/first-party-guidance.md) | Protected content was not explored; the judgment-system guidance page timed out, so its complete coverage and update schedule remain unverified. |
+| [Taiwan Laws & Regulations Database](sites/law-moj/references/site-map.md) | E-government login, favorite laws, and custom folders remain unverified; some long judicial, cross-agency, refresh, API, and Smart Search pages have DOM evidence but not complete visual verification. |
+| [Adaptive Learning Network](sites/adl/references/coverage.md) | Course Overview, AI Companion, and the complete protected teacher sidebar need authenticated re-verification; assignment, class/student changes, imports, uploads, and account operations were intentionally not tested. |
+| [Substitute Teacher Talent Pool](sites/k12ea-ptst/AGENTS.md) | Authenticated resumes, favorites, complete contact data, later-round recruitment data, applications, matching, and employer/admin workflows were not explored. |
+| [National Library of Public Information](sites/nlpi/AGENTS.md) | `myispace` and `myactivity` returned site errors, `myebook` was client-blocked, external member-service destinations were not deeply explored, and standalone 7-day/keyword activity filters were unstable. |
+
+### Markets, Companies, and Regulatory Research
+
+| Package | Unverified or partial workflows |
+| :--- | :--- |
+| [Google Finance](sites/google-finance/AGENTS.md) | The signed-out variant remains unconfirmed; research submission, discussions/tasks, deep search, watchlist analysis, list creation, and portfolio creation were not exercised. |
+| [Koyfin](sites/koyfin/references/coverage.md) | Advisor Tools, remaining Market Overview children, and individual press-release/transcript pages remain unverified; My Graphs is only partially verified. |
+| [Statement Dog](sites/statementdog/references/site-map.md) | Blog search submission remains unconfirmed and company comparison is partial; saving screens, changing watchlists/accounts, payments, and comments were not exercised. |
+| [Seeking Alpha](sites/seeking-alpha/references/site-map.md) | Portfolio, subscriptions, Investing Groups, and account-dependent content remain unverified; custom screener fields, operators, sorting, reset, save, and comparison are not fully tested. |
+| [SEC.gov](sites/sec/AGENTS.md) | Authenticated and filer-management branches remain unexplored; filings, public comments, tips/complaints, subscriptions, API tokens, uploads, and account actions were not submitted. |
+| [FRED](sites/fred/references/site-map.md) | Release/source/category detail pages, account features, Add-in, mobile apps, maps, and ALFRED were not deeply explored; detailed Help panels remained on a spinner. |
+| [AnnualReports.com](sites/annualreports/references/exploration-checklist.md) | The current-report target was not verified in a new tab; pagination/sorting, authenticated variants, external partners, ratings, hardcopy requests, Add Company, and shipment submissions remain unverified or intentionally untested. |
+
+### News, Essays, and Research Databases
+
+| Package | Unverified or partial workflows |
+| :--- | :--- |
+| [Reuters](sites/reuters/AGENTS.md) | My News, saved/followed content, accounts, registration/login, subscriptions, paywalled content, and personalization were not verified. |
+| [GlobeNewswire](sites/globenewswire/references/site-map.md) | RSS Industry/Location tab content and major search-filter option lists/results remain partial; customer/reader account workflows were not explored. |
+| [PR Newswire](sites/pr-newswire/AGENTS.md) | The protected Amplify workspace remains unconfirmed; client login, account creation, release submission, demo/contact, marketing forms, social sharing, and CAPTCHA were intentionally not completed. |
+| [Manny Pro](sites/manny-pro/references/site-map.md) | Account Profile is partial; membership management, subscription cancellation, refunds, payments, payment-info changes, sign-out, and Apple/Spotify linking were not tested. |
+| [Paul Graham](sites/paul-graham/references/agent-usability.md) | External Y Combinator, Amazon, community/forum, and feed destinations were not explored; email, purchase, application, and interaction flows were intentionally not tested. |
+| [Web of Science](sites/webofscience/references/exploration-checklist.md) | Query Builder's distinct behavior, Research Assistant cards, export/alerts/marked lists, current authenticated profile re-entry, ORCID syncing, Account Settings, child My Records pages, and publisher/product pages remain unconfirmed. |
+
+### Social, Publishing, Learning, and Local Discovery
+
+| Package | Unverified or partial workflows |
+| :--- | :--- |
+| [X](sites/x/references/site-map.md) | Notifications, direct messages, history, account settings, Grok, Premium, Creator Studio, Articles, Spaces, ads, third-party login, and payments were not explored. |
+| [Threads](sites/threads/references/site-map.md) | Date-before/custom-date/profile search filters and the profile-to-author-search route are not fully verified; some Insights details and new-message flows remained on loading skeletons. |
+| [Facebook](sites/facebook/AGENTS.md) | Personalized group feeds, actual account-setting changes, messaging, posting/interactions, payments, and Marketplace listing flows were not tested. |
+| [vocus](sites/vocus/AGENTS.md) | Some heavy feed/salon pages have DOM-only or partial visual evidence; purchasing, membership changes, publishing, and Studio mutations were intentionally not exercised. |
+| [koding.school](sites/koding-school/references/exploration-checklist.md) | Project editor, recycle bin, studio creation/removal, account updates, private message bodies, payments, orders, and subscriptions remain unverified. |
+| [PokecaBook](sites/pokecabook/references/site-map.md) | No authenticated/account branch was observed; inquiry-by-X-DM, reCAPTCHA, external destinations, and irreversible workflows were not tested. |
+| [Tabelog](sites/tabelog/references/site-map.md) | Third-party authentication, signed-in navigation, saved/visited lists, review editor, personalization, member rankings, reservation-account features, booking, and payment remain unverified or intentionally untested. |
+
+When a gap is verified, update the owning site package first, then remove or narrow its README entry in the same change. Keep transient outages and browser-control failures distinct from genuine feature absence.
 
 ## Skill Directory
 
