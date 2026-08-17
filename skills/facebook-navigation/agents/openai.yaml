@@ -1,0 +1,4 @@
+interface:
+  display_name: "Facebook Navigation"
+  short_description: "Route read-only Facebook tasks through the in-app browser."
+  default_prompt: "Use $facebook-navigation in the Codex in-app browser to route Facebook requests, inspect the home/feed shell, game discovery, or account/help menus safely."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Facebook Marketplace"
+  short_description: "Search and inspect Marketplace listings safely."
+  default_prompt: "Use $facebook-marketplace in the Codex in-app browser to search Marketplace, apply location/price/sort filters, and inspect listing details without messaging or buying."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Facebook Search"
+  short_description: "Search Facebook and verify current result filters."
+  default_prompt: "Use $facebook-search in the Codex in-app browser to run read-only Facebook searches, switch result types, apply safe filters, and verify current results."
