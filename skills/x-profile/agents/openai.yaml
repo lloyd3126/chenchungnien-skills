@@ -1,0 +1,7 @@
+interface:
+  display_name: "X Profile"
+  short_description: "Inspect X profiles and their public timelines in the in-app browser."
+  default_prompt: "Use $x-profile in the Codex in-app browser to inspect an X profile, switch its public tabs, and verify the current profile state."
+
+policy:
+  allow_implicit_invocation: true

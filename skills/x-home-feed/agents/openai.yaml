@@ -1,0 +1,7 @@
+interface:
+  display_name: "X Home Feed"
+  short_description: "Inspect X home timelines without publishing or interacting."
+  default_prompt: "Use $x-home-feed in the Codex in-app browser to inspect the requested X home timeline and verify its current selected tab and visible posts."
+
+policy:
+  allow_implicit_invocation: true

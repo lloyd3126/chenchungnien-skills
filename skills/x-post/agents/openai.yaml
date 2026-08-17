@@ -1,0 +1,7 @@
+interface:
+  display_name: "X Post"
+  short_description: "Read X posts, conversations, media, and available analytics."
+  default_prompt: "Use $x-post in the Codex in-app browser to inspect an X post or thread, verify its content, and stop before any outward action."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "X Search"
+  short_description: "Search X and verify topic, account, media, and list results."
+  default_prompt: "Use $x-search in the Codex in-app browser to search X, choose the correct result tab, and verify the current query and results."
+
+policy:
+  allow_implicit_invocation: true
