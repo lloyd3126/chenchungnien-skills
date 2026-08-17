@@ -1,0 +1,4 @@
+interface:
+  display_name: "Statement Dog Watchlist"
+  short_description: "Inspect signed-in tracking lists and account areas"
+  default_prompt: "Use $statementdog-watchlist in the Codex in-app browser to inspect the signed-in tracking workspace without changing the account."

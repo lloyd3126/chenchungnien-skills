@@ -1,0 +1,4 @@
+interface:
+  display_name: "Statement Dog Screening"
+  short_description: "Build and verify stock screens and rankings"
+  default_prompt: "Use $statementdog-screening in the Codex in-app browser to apply safe screening or ranking criteria and verify the result."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Statement Dog Market"
+  short_description: "Explore markets, industries, topics, news, and reports"
+  default_prompt: "Use $statementdog-market in the Codex in-app browser to investigate current market, industry, topic, news, or report information."

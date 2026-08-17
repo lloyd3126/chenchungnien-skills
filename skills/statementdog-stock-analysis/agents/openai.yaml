@@ -1,0 +1,4 @@
+interface:
+  display_name: "Statement Dog Stock Analysis"
+  short_description: "Analyze company pages and financial metrics"
+  default_prompt: "Use $statementdog-stock-analysis in the Codex in-app browser to inspect a company and verify its current analysis pages."
