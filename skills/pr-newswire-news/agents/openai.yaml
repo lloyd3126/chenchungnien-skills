@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Newswire News"
+  short_description: "Browse releases, topics, and multimedia"
+  default_prompt: "Use $pr-newswire-news in the Codex in-app browser to inspect PR Newswire releases, topics, organizations, or multimedia."

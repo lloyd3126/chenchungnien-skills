@@ -1,0 +1,4 @@
+interface:
+  display_name: "AnnualReports Search"
+  short_description: "Search and filter public AnnualReports company listings."
+  default_prompt: "Use $annualreports-search in the Codex in-app browser to find a company by keyword, exchange, sector, or industry and verify the result."

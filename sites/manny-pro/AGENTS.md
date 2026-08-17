@@ -59,3 +59,4 @@
 - [site-map.md](references/site-map.md)：已驗證路由、頁型、導覽與公開／受保護邊界。
 - [data-model.md](references/data-model.md)：文章、集數、列表、標籤、方案、會員與 FAQ 的關係。
 - [first-party-guidance.md](references/first-party-guidance.md)：方案頁 FAQ 與 Firstory 官方會員內容解鎖說明；涉及帳務或會員憑證時必讀。
+- [article-source-index.md](references/article-source-index.md)：本地保存的 39 篇文章來源線索、主張對應、原始文件保存狀態與待核實清單；不代表外部來源已重新核對。

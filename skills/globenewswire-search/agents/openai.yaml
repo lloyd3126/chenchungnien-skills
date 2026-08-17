@@ -1,0 +1,4 @@
+interface:
+  display_name: "GlobeNewswire Search"
+  short_description: "Search and filter public GlobeNewswire news"
+  default_prompt: "Use $globenewswire-search to find and verify public GlobeNewswire releases."

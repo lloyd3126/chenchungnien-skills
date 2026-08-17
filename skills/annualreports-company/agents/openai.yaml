@@ -1,0 +1,4 @@
+interface:
+  display_name: "AnnualReports Company Reports"
+  short_description: "Inspect company profiles and retrieve annual report links."
+  default_prompt: "Use $annualreports-company in the Codex in-app browser to inspect a company profile, current report, archives, and safe report links."

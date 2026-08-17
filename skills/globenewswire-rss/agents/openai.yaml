@@ -1,0 +1,4 @@
+interface:
+  display_name: "GlobeNewswire RSS"
+  short_description: "Find GlobeNewswire RSS and ATOM feeds"
+  default_prompt: "Use $globenewswire-rss to locate and verify a public GlobeNewswire RSS or ATOM feed."

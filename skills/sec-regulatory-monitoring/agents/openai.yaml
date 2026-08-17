@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEC Regulatory Monitoring"
+  short_description: "Monitor SEC news, rules, and comments"
+  default_prompt: "Use $sec-regulatory-monitoring to find and verify current SEC newsroom, rulemaking, or public-comment information."

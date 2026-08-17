@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reuters Market Data"
+  short_description: "Read Reuters markets and quotes"
+  default_prompt: "Use $reuters-market-data to inspect current Reuters market data, quotes, or market sections."

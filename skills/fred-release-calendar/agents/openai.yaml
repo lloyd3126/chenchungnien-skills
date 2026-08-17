@@ -1,0 +1,4 @@
+interface:
+  display_name: "FRED Release Calendar"
+  short_description: "Browse FRED releases and release dates."
+  default_prompt: "Use $fred-release-calendar to find a FRED release, filter its calendar, and verify the displayed release dates."

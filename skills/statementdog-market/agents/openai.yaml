@@ -1,4 +1,4 @@
 interface:
   display_name: "Statement Dog Market"
-  short_description: "Explore markets, industries, topics, news, and reports"
-  default_prompt: "Use $statementdog-market in the Codex in-app browser to investigate current market, industry, topic, news, or report information."
+  short_description: "Read live or saved reports with evidence controls"
+  default_prompt: "Use $statementdog-market to analyze this live page or local report archive, record the source mode, build claim and forecast ledgers, apply the relevant domain method, and hand off evidence-backed candidates without treating them as recommendations."

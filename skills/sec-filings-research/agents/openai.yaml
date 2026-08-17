@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEC Filing Research"
+  short_description: "Research SEC filings and EDGAR records"
+  default_prompt: "Use $sec-filings-research to find and verify current SEC filings, company records, or EDGAR documents."
