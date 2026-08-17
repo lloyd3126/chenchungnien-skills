@@ -1,0 +1,4 @@
+interface:
+  display_name: "曼報 Pro Research Methods"
+  short_description: "Extract and audit evidence-traceable 商業解碼 methods"
+  default_prompt: "Use $manny-pro-methodology to select a source mode, extract and audit the evidence, then apply a falsifiable method from the relevant 曼報 Pro series."

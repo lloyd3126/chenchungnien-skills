@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Newswire Search"
+  short_description: "Search and filter public PR Newswire content"
+  default_prompt: "Use $pr-newswire-search in the Codex in-app browser to search PR Newswire and verify current results."

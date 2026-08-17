@@ -1,0 +1,4 @@
+interface:
+  display_name: "曼報 Pro × Statement Dog"
+  short_description: "Audit Manny methods against Statement Dog coverage"
+  default_prompt: "Use $manny-pro-statementdog-bridge to declare the source mode and map this research question to dated Statement Dog facts, reproducible calculations, and clearly typed evidence gaps."

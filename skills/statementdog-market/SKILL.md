@@ -1,56 +1,79 @@
 ---
 name: statementdog-market
-description: Explore current Statement Dog market, industry, topic, news, blog, and industry-report information through the Codex in-app browser. Use when the user asks about TAIEX, sector performance, market focus, concept stocks, supply chains, articles, or site-authored industry research.
+description: Explore current Statement Dog market, industry, topic, news, blog, and industry-report information in the Codex in-app browser, or analyze user-provided local Statement Dog report snapshots without browsing. Use for TAIEX, sector performance, market focus, concept stocks, supply chains, articles, report-series reading, comments/replies, forecast timelines, and report-to-company handoff.
 ---
 
 # Statement Dog market and content
 
-Use this skill for market-wide or site-content research. These pages are dynamic views of current prices, performance, concepts, articles, and reports; re-open the relevant page for every task.
+Use this skill for market-wide, site-content, and industry-report research. Choose the source mode before reading:
 
-## Entry points
+- `current_site`: use the Codex in-app browser and re-open dynamic pages for the task.
+- `local_snapshot`: use only provided or existing local files when the user requests offline work; do not infer current values or site state.
+- `mixed`: combine historical local evidence with a separately authorized live check while preserving both dates.
 
-Work only in the Codex in-app browser. Main routes are:
+For industry reports, first read [research-contract.md](references/research-contract.md). For a multi-report or comment/reply task, also read [industry-report-methodology.md](references/industry-report-methodology.md). Use [method-routing.md](references/method-routing.md) to select only the relevant domain methodology.
+
+## Current-site entry points
+
+Use these routes only in `current_site` or authorized `mixed` mode:
 
 - `/taiex` — TAIEX and industry performance overview; industry detail follows `/taiex/<slug>`.
 - `/market-trend` — market-focus visualization with market, period, and scale filters.
 - `/tags/<id>` — concept/topic page with supply-chain categories, company cards, reasons, and related news.
-- `/news`, `/news/trending`, `/news/latest` — recommended, popular, and latest news views.
+- `/news`, `/news/trending`, `/news/latest` — recommended, popular, and latest news.
 - `/blog/` — site blog with category navigation and article search.
 - `/industry_reports` and `/industry_reports/<id>` — industry-report list and detail pages.
 
-Read `sites/statementdog/references/site-map.md` for the navigation inventory and `data-model.md` for topic, industry, article, and report relationships.
+Read [../../sites/statementdog/references/site-map.md](../../sites/statementdog/references/site-map.md) for the navigation inventory and [../../sites/statementdog/references/data-model.md](../../sites/statementdog/references/data-model.md) for topic, industry, article, report, and company relationships.
 
 ## Workflow
 
-1. Choose the page type from the user's request. Use `/taiex` for broad market/industry performance, `/market-trend` for current moving concepts, `/tags/<id>` for a named concept, `/news` or `/blog/` for current articles, and `/industry_reports` for long-form site research.
-2. On `/taiex`, read the update date and the page's own explanation before comparing sectors. If the user asks whether the index is high or low, include the site's warning that an absolute TAIEX level is not sufficient and that market P/B is a relative reference.
-3. On `/market-trend`, verify the selected market (`全部`, `台股`, `美股`), period (`1天`, `1周`, `1月`, `3月`, `YTD`, `1年`), and scale. After changing a filter, verify the visible visualization or labels changed; do not rely on the URL alone.
-4. On a topic page, distinguish benefit/supply-chain categories, company cards, benefit levels, reasons, related news, and related tags. Use the company link to route a specific stock to the stock-analysis skill.
-5. On news or blog pages, record the active category and article date. For blog search, submit the visible `搜尋文章` field and verify the resulting `/blog/search/<encoded-term>` page when the current UI supports it; treat the result list as dynamic and fall back to visible category/article links if submission does not change the page.
-6. On an industry report, use the report's headings to locate the requested process, supply-chain map, company summary, or mentioned stocks. Follow links to topics or companies only when needed.
-7. Read site-authored explanations such as `怎麼判斷大盤指數高低`, report methodology buttons, and terminology help before paraphrasing the site's definitions.
+1. Record source mode, observation or capture date, requested scope, and whether the user needs one report, a complete series, or candidate extraction.
+2. Choose the page or local artifact. In `local_snapshot` mode, start from a manifest if present, read saved HTML, inspect local images, and use text only as a fallback. Never turn a snapshot into a current price, ratio, UI, news, or inventory claim.
+3. For current `/taiex`, read the update date and the page's explanation before comparing sectors. If asked whether the index is high or low, include the site's warning that an absolute index level is insufficient and market P/B is only a relative reference.
+4. For current `/market-trend`, verify market, period, and scale. After changing a filter, confirm the visible visualization or labels changed; the URL alone is not proof.
+5. On a topic page, distinguish supply-chain category, company card, benefit level, stated reason, related news, and related tags. Route a specific stock to `$statementdog-stock-research` when a thesis or complete company check is needed.
+6. On news or blog pages, record category, publication date, and observation time. Treat historical paths, lists, comments, and rankings as potentially stale.
+7. On an industry report, read the full body, headings, tables, charts, diagrams, company/topic links, comments, and official replies that are available in the selected source mode. Describe what each visual supports and what it cannot prove.
+8. For a series, preserve newest-to-oldest archive order, group genuine continuations by theme, normalize product/geography/period/unit scope, and build both a timeline and forecast ledger before concluding.
+9. Classify every material claim and preserve its causal mechanism, expected trace, disconfirming trace, evidence stage, and status. A later report repeating a claim is continuity, not independent confirmation.
+10. Mark candidates `explicit`, `inferred`, or `unverified`, preserve their source section and role, and pass them through the company handoff gate in [research-contract.md](references/research-contract.md). Report inclusion is not a recommendation.
+11. Use the selected domain methodology for product-specific indicators, capacity timing, commercialization stages, substitution, and invalidation rules.
+12. Route company-level financial, valuation, price, news, and monitoring verification to `$statementdog-stock-research`.
 
 ## Interpretation and limitations
 
-Current performance percentages, company counts, article lists, topic reasons, rankings, and report contents are dynamic. Keep them out of the skill and references. Cite the page and its update state in the user-facing answer when freshness matters.
+Keep these layers separate:
 
-Statement Dog's disclaimer says its information is an auxiliary reference, may contain delay or errors, and should not replace official disclosures or be treated as a recommendation. For an investment conclusion, clearly separate the site's description from the user's decision and consult `first-party-guidance.md`.
+- historical report observation, assumption, forecast, or example;
+- reader question or disputed correction;
+- author/official clarification;
+- analyst inference;
+- current evidence with its own observation date;
+- unavailable or `current_not_checked` evidence.
 
-Some topic controls may be custom widgets: a click is only verified when the checked state or visible content changes. Some concept blocks may not expose semantic links in the current DOM. Report such behavior as unverified rather than claiming an interaction worked.
+Current percentages, company counts, article lists, rankings, report contents, UI labels, and comments are dynamic. Keep them out of the skill. Do not treat `not_present_at_read_time` as proof that comments never existed.
+
+Statement Dog describes its information as an auxiliary reference that may contain delays or errors and should not replace official disclosures or be treated as a recommendation. Consult [../../sites/statementdog/references/first-party-guidance.md](../../sites/statementdog/references/first-party-guidance.md) when presenting an investment conclusion.
+
+Some controls are custom widgets. A click is verified only when checked state or visible content changes. Report unverified behavior rather than claiming the interaction worked.
 
 ## Authentication and safety
 
-If the current visible page clearly shows an authenticated session, no separate permission question is needed to inspect safe protected content routes; re-check public content paths in that authenticated state. If authentication is not visible, complete the public exploration first, ask whether protected exploration is wanted, and let the user sign in manually.
+If a current page visibly shows an authenticated session, safe read-only inspection does not require a separate permission question. If authentication is absent, complete public exploration first and let the user sign in manually when protected content is needed.
 
-Do not publish, comment, subscribe, purchase, send messages, or alter account data while exploring. Opening an article or report is safe; following an external link is not by itself evidence that Statement Dog endorses or verifies the destination.
+Do not publish, comment, subscribe, purchase, send messages, save reports, modify watchlists, change account data, bypass a paywall/CAPTCHA/query limit, or perform trading actions during research.
 
 ## Drift maintenance
 
-If a route, filter, tab, page heading, or control behavior changes, use the current UI to finish the safe task and update the relevant site reference and this skill. Do not preserve current market values or article titles as stable knowledge.
+If a route, filter, tab, heading, metric definition, or control changes, finish the safe task using the visible current UI and update the owning site reference only after verification. Never store current market values, article titles, report conclusions, or company recommendations as permanent skill knowledge.
 
 ## References
 
-- `sites/statementdog/references/site-map.md` — market, topic, content, and report routes.
-- `sites/statementdog/references/data-model.md` — industry, topic, article, report, and company relationships.
-- `sites/statementdog/references/form-controls.md` — market filters and topic/blog interaction notes.
-- `sites/statementdog/references/first-party-guidance.md` — disclaimer, TAIEX explanation, and source precedence.
+- [research-contract.md](references/research-contract.md) — source modes, scope normalization, claim schema, status vocabulary, handoff gate, and data-quality checks.
+- [industry-report-methodology.md](references/industry-report-methodology.md) — article-by-article reading, visuals, comments/replies, series comparison, and output records.
+- [method-routing.md](references/method-routing.md) — routes a claim or company role to the relevant domain method.
+- [../../sites/statementdog/references/site-map.md](../../sites/statementdog/references/site-map.md) — market, topic, content, and report routes.
+- [../../sites/statementdog/references/data-model.md](../../sites/statementdog/references/data-model.md) — site entities and relationships.
+- [../../sites/statementdog/references/form-controls.md](../../sites/statementdog/references/form-controls.md) — filter and interaction notes.
+- [../../sites/statementdog/references/first-party-guidance.md](../../sites/statementdog/references/first-party-guidance.md) — disclaimer, TAIEX explanation, and source precedence.

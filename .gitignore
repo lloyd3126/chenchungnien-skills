@@ -1,3 +1,12 @@
+# Local scratch files and generated research artifacts.
+tmp/
+
+# Local secrets and machine-specific environment files.
+.env
+.env.*
+!.env.example
+
+# macOS metadata.
 .DS_Store
 .vscode/
 __pycache__/

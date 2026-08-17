@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Newswire Resources"
+  short_description: "Research PR Newswire products and resources"
+  default_prompt: "Use $pr-newswire-resources in the Codex in-app browser to research PR Newswire products, resources, RSS, or public guidance."

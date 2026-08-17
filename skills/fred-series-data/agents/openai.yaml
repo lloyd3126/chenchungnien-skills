@@ -1,0 +1,4 @@
+interface:
+  display_name: "FRED Series Data"
+  short_description: "Find and inspect FRED economic data series."
+  default_prompt: "Use $fred-series-data to find a FRED series, inspect its metadata and observations, and verify the current result."

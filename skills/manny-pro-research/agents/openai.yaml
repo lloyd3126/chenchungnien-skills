@@ -1,0 +1,4 @@
+interface:
+  display_name: "曼報 Pro Company Research"
+  short_description: "Run evidence-traceable Manny Pro company research"
+  default_prompt: "Use $manny-pro-research to declare the source mode and analyze this company with value-chain, workflow, competition, unit-economics, capital-efficiency, scenario, and reverse-valuation methods."

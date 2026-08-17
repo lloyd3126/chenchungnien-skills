@@ -1,93 +1,119 @@
 ---
 name: statementdog-stock-research
-description: "Turn a Statement Dog industry report or investment thesis into a reproducible, read-only stock research workflow: extract candidates, apply the book-derived eight-step screen, inspect the industry, and verify each company through profitability, safety, valuation, and growth. Use when the user asks to find stocks from a report, screen report-mentioned companies, follow the 財報狗教你挖好股穩賺20% process, or build an evidence-based Statement Dog research checklist."
+description: Turn a Statement Dog report, investment thesis, local report snapshot, or ticker into reproducible read-only stock research. Use to verify a company's business and industry role, revenue and profit trends, earnings quality and safety, valuation, price/news context, competitive advantage, and monitoring plan; also use for report-mentioned candidates or the historical 財報狗教你挖好股穩賺20% workflow.
 ---
 
 # Statement Dog stock research
 
-Coordinate the complete path from an industry report to company-level verification. Keep the report's narrative, the site's dynamic data, and the analyst's interpretation separate.
+Coordinate the path from a report or ticker to company-level verification. Keep historical narrative, observed company data, and analyst interpretation separate.
+
+Read [../statementdog-market/references/research-contract.md](../statementdog-market/references/research-contract.md) for source modes, claim records, the company handoff gate, statuses, and data-quality checks. Use [../statementdog-market/references/method-routing.md](../statementdog-market/references/method-routing.md) to select only the relevant domain method.
+
+Read [tutorial-methodology.md](references/tutorial-methodology.md) for the research order distilled from the 67 foundation-tutorial articles and comments. Read [book-workflow.md](references/book-workflow.md) only when the user requests the historical eight-step screen or its thresholds. Read [industry-metric-matrix.md](references/industry-metric-matrix.md) for role-specific operating and financial traces.
 
 ## Route the work
 
-- Use `$statementdog-market` for the current industry report, article, topic, or report-mentioned company links.
-- Use `$statementdog-screening` for the site screen, conditions, result list, sorting, pagination, and screen freshness.
-- Use `$statementdog-stock-analysis` for one company's current metrics and four-part analysis.
-- Use `$statementdog-watchlist` only when the user explicitly asks to inspect or modify personal tracking data. This workflow is read-only by default.
+- Use `$statementdog-market` to read or reconstruct an industry report, article, topic, series timeline, comments, and report-mentioned candidates.
+- Use `$statementdog-screening` only when a task actually requires site filters, result lists, sorting, pagination, or screen freshness.
+- Use `$statementdog-stock-analysis` for the current metrics and four-part analysis of one company.
+- Use `$statementdog-watchlist` only when the user explicitly requests personal tracking data. This workflow is otherwise read-only.
 
-Read [book-workflow.md](references/book-workflow.md) for the historical thresholds, sequence, and output checklist derived from *財報狗教你挖好股穩賺20%*.
+## Choose the research track
+
+Record both the track and source mode before starting:
+
+- `direct_ticker`: research a named company. Do not require a cross-sectional screen.
+- `report_handoff`: verify explicit or inferred candidates against the report thesis. Complete the role-exposure gate before ratios.
+- `historical_screen`: apply the book-derived conditions to narrow a universe only when the user asks for that screen or methodology.
+
+For `direct_ticker` and `report_handoff`, also record `quick_triage` or `full_research` depth. Use quick triage only when the user asks for a fast first pass; apply the rough safety, ROE, and valuation checks in [tutorial-methodology.md](references/tutorial-methodology.md) after confirming company identity, and list what still requires full research.
+
+Use `current_site`, `local_snapshot`, or authorized `mixed` mode as defined in the research contract. In local mode, do not claim current prices, ratios, news, filings, UI labels, or thesis validation; mark them `current_not_checked`.
 
 ## Workflow
 
-### 1. Define the research scope
+### 1. Define identity, scope, and evidence
 
-Identify the report URL or file, report title/date, theme, and whether the user wants all mentioned companies or only a subset. If the report is part of a series, group related reports under one theme and preserve each report's date and evidence.
+Record ticker, company, market, source mode, observation/capture date, and requested depth. For report handoff, also record report/file, date, section, series, and `explicit`, `inferred`, or `unverified` candidate status.
 
-Extract only evidence-backed candidates:
+Confirm what the company sells, its major products, customer/end-market mix, geography, industry-chain role, and whether the relevant exposure is material or undisclosed. Do not begin with a ratio dump.
 
-- Record every explicitly named company, ticker, topic/company link, and the section where it appears.
-- Distinguish `report-mentioned` candidates from `inferred` candidates. Never present an inferred candidate as if the report named it.
-- Summarize the report's supply/demand, capacity, product-cycle, pricing, and industry assumptions before screening companies.
-- If the report contains no usable candidate list, say so and ask whether to screen a clearly defined industry universe; do not invent a universe silently.
+### 2. Build the thesis card
 
-### 2. Apply the report-derived screen
+Write one testable card before judging the stock:
 
-Use the current Statement Dog UI and the equivalent current controls. Treat the PDF's thresholds as defaults, not immutable site facts:
+- normalized product, end market, geography, period, and unit;
+- structural, cyclical, product-transition, or policy/pull-forward driver;
+- demand, inventory, usable supply, capacity, price/mix, and substitution mechanism;
+- exact company role and competitive-advantage hypothesis;
+- expected operating trace, then revenue, margin, working-capital, capex, and cash-flow trace;
+- time horizon, catalyst, earliest invalidator, and unavailable evidence.
 
-1. Long-term ROE: recent one-year data and recent five-year average both above 15%.
-2. Long-term net margin: recent one-year data and recent five-year average both above 10%.
-3. Operating cash flow to net profit: recent one-year data and recent five-year average both above 50%.
-4. Free cash flow per share: recent one-year data and recent five-year average both above 0.
+Use the domain method and role matrix to choose the right indicators. A good industry story that cannot be connected to role exposure and measurable traces is still unverified.
 
-After the four initial conditions, run the remaining checks in this order:
+### 3. Apply screening only when it fits the track
 
-5. List and record the screen results, active period, result count if visible, pagination state, and update/freshness information.
-6. Inspect the industry: long-term direction, durable company advantage, and whether the industry has the four “burning money” warning characteristics described by the book.
-7. Check valuation using the current Statement Dog valuation equivalent. The book's default is dividend-discount return above 10%, with a stricter 15% reference during a depressed market.
-8. Check growth using the current short-term versus long-term revenue-growth equivalent. The book's default is short-term revenue growth breaking above long-term revenue growth.
+For `historical_screen`, apply the book defaults with the current equivalent controls when live access is authorized:
 
-Apply only requested or documented conditions. If the current UI lacks a condition, a period, or the VIP feature, mark it `unavailable` or `protected` and explain the limitation; do not silently substitute a different metric.
+1. one-year and five-year-average ROE above 15%;
+2. one-year and five-year-average net margin above 10%;
+3. one-year and five-year-average operating cash flow/net profit above 50%;
+4. one-year and five-year-average free cash flow per share above 0;
+5. record complete results, active conditions, periods, pagination, and update state;
+6. inspect industry direction, durable advantage, and the four capital-intensity warnings;
+7. inspect the current valuation equivalent; the book used dividend-discount returns above 10%, with 15% as a stricter reference;
+8. inspect whether short-term revenue growth breaks above long-term revenue growth using the exact displayed periods.
 
-### 3. Verify each surviving company
+These are historical defaults, not universal buy rules. For `direct_ticker` or `report_handoff`, use relevant metrics diagnostically; do not reject or approve a company solely because it crosses these thresholds. If a live control is renamed, protected, or unavailable, record that boundary without silent substitution.
 
-Open each result on its company analysis page and verify the ticker, company identity, market, and current update state before interpreting it. Use this fixed order:
+### 4. Verify the company in a fixed order
 
-1. **Profitability** — long-term ROE and net margin; then industry value trend and competitive position.
-2. **Safety** — operating cash flow relative to net profit and free cash flow; then debt or balance-sheet warnings when material; confirm the company is not merely a cash-burning business.
-3. **Valuation** — current valuation measure, dividend-discount or equivalent return signal, comparison with the industry, and the reason for any apparent under- or over-valuation.
-4. **Growth** — short-term and long-term revenue growth, plus the industry drivers, products, markets, or customers that could sustain or weaken growth.
+1. **Business and industry role** — products, customers, end markets, capacity, pricing, product cycle, capital intensity, and actual report exposure.
+2. **Industry thesis and competitive advantage** — test demand, supply, inventory, qualification, substitution, timing, and the claimed cost/yield/technology/customer/scale/service advantage with role-specific operating evidence.
+3. **Revenue and growth** — use year-over-year and cumulative year-over-year trends where seasonality matters; separate volume, units/bits/content, ASP, mix, pull-forward, backlog conversion, and acquisitions.
+4. **Profitability** — gross, operating, and net margin; EPS; ROE/ROA and DuPont drivers. Separate price/mix, cost, operating expense, non-operating items, asset efficiency, leverage, and dilution.
+5. **Earnings quality and safety** — CFO/net income, FCF, receivables and inventory turnover/days, debt composition, liquidity, capex/depreciation, equity issuance, convertibles, treasury stock, and share count. Explain productive expansion rather than treating every negative FCF period as failure.
+6. **Valuation, price, and news context** — use PE/PB or the current equivalent against expected 3–5 year growth, cycle position, asset quality, and peer economics. Use price to judge expectations and valuation, not to prove operations. Treat news as a hypothesis until official disclosure and later operating data support it.
+7. **Monitoring and invalidation** — define monthly revenue checks, quarterly margin/cash/balance-sheet checks, role-specific industry events, and the exact condition that would change the conclusion.
 
-For every part, record:
+Before comparing values, apply the research contract's period, consolidation, averaging, unit, currency, one-off, share-count, backlog, and usable-capacity checks. Financial-sector thresholds are not silently comparable with ordinary operating companies.
 
-- the current page/section and period used;
-- the displayed value or qualitative signal;
-- `pass`, `fail`, or `unknown` against the research criterion;
-- evidence, caveat, and what would change the conclusion.
+### 5. Assign evidence and result states
 
-Finish each company with an `investment direction` statement that distinguishes observed facts, interpretation, risks, and unresolved items. Do not collapse “passes the screen” into “buy”.
+For each material item, separate:
 
-### 4. Report the result
+- `observed`: source, page/section, period, value or qualitative event, and observation date;
+- `interpretation`: what the evidence suggests through the stated mechanism;
+- `risk`: plausible alternative explanation or invalidator;
+- `unknown`: unavailable, protected, stale, ambiguous, or `current_not_checked` data;
+- `next_check`: exact metric, filing, monthly/quarterly release, qualification, installation, or customer event.
 
-Use a compact evidence-first structure:
+Use `pass`, `fail`, or `unknown` only against an explicit screen criterion. For historical claims, use `not_tested`, `supports`, `weakens`, `cannot_test`, `unresolved`, or `not_applicable`. A screen pass, report mention, order, design win, or price rise is not a buy signal.
 
-1. Research scope and report evidence.
-2. Industry thesis and assumptions.
-3. Candidate list and source sections.
-4. Screen conditions, current site state, and result completeness.
-5. Industry checks.
-6. Per-company table: profitability, safety, valuation, growth, status, evidence, and risk.
-7. Ranking or grouping only when the user asks for it; otherwise preserve the screen order.
-8. Limitations: stale report data, unavailable controls, protected VIP data, missing periods, or incomplete pagination.
+## Output
 
-Separate historical book rules from current site results. Current prices, ratios, rankings, company counts, news, and update dates must be fetched at task time and must never be written into this skill or its references.
+Present:
+
+1. scope, track, source mode, and completeness;
+2. thesis card and normalized causal chain;
+3. candidate source and company-role exposure;
+4. role-specific operating indicators and competitive-advantage evidence;
+5. revenue/profitability, safety/earnings quality, valuation, price/news context, and monitoring;
+6. observed evidence, interpretation, risks, unknowns, and next checks;
+7. historical-claim validation and investment direction without turning it into personalized trade advice.
+
+Rank or group companies only when requested. Preserve screen order otherwise. Keep current prices, ratios, rankings, news, report conclusions, and company recommendations out of this skill and its references.
 
 ## Browser and safety boundary
 
-Use the Codex in-app browser for current Statement Dog UI work, following `browser:control-in-app-browser`. Start from the user's current same-site tab when available. Read-only inspection and safe navigation are the default.
+Use the Codex in-app browser only for authorized current Statement Dog work. Start from the user's current same-site tab when available and follow `browser:control-in-app-browser`. In local mode, remain offline.
 
-Do not save filters, modify portfolios, follow/unfollow, post comments, purchase a plan, export private data, place trades, change account settings, or perform another irreversible action unless the user explicitly requests it and the required confirmation is obtained at the action boundary. Never bypass a paywall, query cap, CAPTCHA, or login gate. If protected data is needed and authentication is not visibly active, let the user sign in manually in the same in-app browser tab.
+Do not save filters, change portfolios or watchlists, follow/unfollow, post, purchase, export private data, place trades, change account settings, bypass access controls, or perform another state-changing action without an explicit user request and any required confirmation.
 
-Treat the PDF's website screenshots as historical operating evidence. Before using a control, compare its label, route, period, and result behavior with the current UI. If they differ, use the current first-party UI as the source of truth and record the drift without storing live values.
+## References
 
-## Maintenance
-
-When a route, label, metric definition, period selector, or workflow behavior changes, update the owning Statement Dog skill or site reference only after the difference is clearly observed and safely verified. Keep public and authenticated variants separate, preserve unrelated edits, and run the repository's `quick_validate.py` after changing a skill.
+- [tutorial-methodology.md](references/tutorial-methodology.md) — archive-derived company research order and accounting cautions.
+- [book-workflow.md](references/book-workflow.md) — historical eight-step screen and thresholds.
+- [industry-metric-matrix.md](references/industry-metric-matrix.md) — cross-industry role, operating-trace, financial-trace, and false-positive matrix.
+- [../statementdog-market/references/research-contract.md](../statementdog-market/references/research-contract.md) — evidence and handoff contract.
+- [../statementdog-market/references/method-routing.md](../statementdog-market/references/method-routing.md) — domain-method routing.

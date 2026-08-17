@@ -1,7 +1,7 @@
 interface:
   display_name: "Statement Dog Stock Research"
   short_description: "從產業報告到財報狗個股查核的完整研究流程與證據整理"
-  default_prompt: "Use $statementdog-stock-research to turn this industry report into a verified Statement Dog stock-research workflow."
+  default_prompt: "Use $statementdog-stock-research to research this ticker or report candidate with the appropriate track, verify role exposure before ratios, separate historical and current evidence, and define invalidation and monitoring checks."
 
 policy:
   allow_implicit_invocation: true
