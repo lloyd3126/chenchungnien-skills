@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paul Graham References"
+  short_description: "Explore books, projects, and reference pages"
+  default_prompt: "Use $paul-graham-reference-research to inspect a Paul Graham reference or project page."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "因材網教師工作流"
+  short_description: "唯讀檢查任務、班級、帳號與學習扶助"
+  default_prompt: "Use $adl-teacher-workflows in the Codex in-app browser to inspect authenticated 教育部因材網 teacher tasks, progress, classes, accounts, or learning-support data safely."
+
+policy:
+  allow_implicit_invocation: true

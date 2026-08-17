@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web of Science Researcher Search"
+  short_description: "Search authors and inspect records"
+  default_prompt: "Use $wos-researcher-search in the Codex in-app browser to search Web of Science authors, verify a result, and inspect its profile or full record."

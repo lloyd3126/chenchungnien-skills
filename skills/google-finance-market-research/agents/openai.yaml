@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Finance Market Research"
+  short_description: "Search markets, securities, quotes, and charts"
+  default_prompt: "Use $google-finance-market-research to find a security or market view in Google Finance and verify the current quote."

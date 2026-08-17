@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vocus Products"
+  short_description: "Browse vocus digital products safely"
+  default_prompt: "Use $vocus-product to browse or inspect vocus digital products without purchasing."

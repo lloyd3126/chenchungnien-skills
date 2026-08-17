@@ -2,119 +2,169 @@
 
 [繁體中文](./README.zh-TW.md)
 
-A curated collection of reusable agent skills designed by Chen Chung Nien.
+A curated collection of reusable agent skills for reliable, repeatable work across research databases, market tools, government services, social platforms, and content sites.
 
-This repository showcases the skills I design and publish to help AI agents work more reliably in specific domains.
+Each skill has one clear responsibility. Website packages add shared navigation, data-model, freshness, authentication, evidence, and safety guidance so related skills behave consistently.
 
-## About
+## Start Here
 
-Each skill in this repository is designed to be practical, maintainable, and clearly scoped for real work instead of one-off prompting.
+- To use an existing skill, find the task area below and choose the narrowest matching skill.
+- To understand a supported website as a whole, open the package name; it links to that site's shared `AGENTS.md` guidance.
+- To turn a new website into reusable guidance and skills, use `website-skill-builder`.
 
-## Skills In This Repo
+Browser-based skills default to current, verifiable page state and read-only exploration. Credentials, session data, live counts, and one-off results do not belong in durable guidance; actions that publish, purchase, submit, message, or change account state require explicit authorization.
 
-| Skill | Description |
-| :--- | :--- |
-| [`tw-gov-data`](skills/tw-gov-data) | Discover, inspect, compare, and summarize datasets from Taiwan's government open data platform, `data.gov.tw`. |
-| [`tw-stock-data`](skills/tw-stock-data) | Fetch, validate, and analyze Taiwan stock, OTC, futures, options, and MOPS financial datasets using the `tw-stock` CLI. |
-| [`website-skill-builder`](skills/website-skill-builder) | Systematically explore a website in Codex's built-in browser and turn its stable structure, workflows, and data model into reusable agent guidance. |
-| [`reuters-news-search`](skills/reuters-news-search) | Search and filter current Reuters coverage through the built-in browser. |
-| [`reuters-market-data`](skills/reuters-market-data) | Inspect Reuters Markets sections, regional tabs, quote tables, and delayed LSEG data. |
-| [`reuters-article-research`](skills/reuters-article-research) | Read Reuters article details, visible source context, media, and access state. |
-| [`globenewswire-search`](skills/globenewswire-search) | Search and verify public GlobeNewswire newsroom releases by keyword, category, organization, or tag. |
-| [`globenewswire-release`](skills/globenewswire-release) | Inspect public GlobeNewswire release metadata, body structure, tags, links, and related-release routes. |
-| [`globenewswire-rss`](skills/globenewswire-rss) | Locate and verify public GlobeNewswire RSS, ATOM, and JavaScript widget feeds. |
-| [`pr-newswire-search`](skills/pr-newswire-search) | Search and filter public PR Newswire releases, organizations, products, and resources. |
-| [`pr-newswire-news`](skills/pr-newswire-news) | Browse and verify PR Newswire news releases, categories, organization histories, and multimedia. |
-| [`pr-newswire-resources`](skills/pr-newswire-resources) | Research PR Newswire products, Amplify modules, resources, RSS, and public guidance. |
-| [`sec-filings-research`](skills/sec-filings-research) | Search and verify SEC.gov and EDGAR company records, CIKs, filing histories, filing details, and API documentation. |
-| [`sec-regulatory-monitoring`](skills/sec-regulatory-monitoring) | Monitor SEC newsroom items, rulemaking activity, public-comment dockets, and related regulatory documents. |
-| [`tabelog-search`](skills/tabelog-search) | Search and filter public Tabelog listings in Codex's built-in browser, including autocomplete-based area selection and result verification. |
-| [`tabelog-restaurant`](skills/tabelog-restaurant) | Inspect Tabelog restaurant pages and related menus, photos, reviews, ratings, maps, and availability through the built-in browser. |
-| [`koding-school-learning`](skills/koding-school-learning) | Browse koding.school courses, enrolled-course filters, course details, and lesson page variants through the built-in browser. |
-| [`koding-school-community`](skills/koding-school-community) | Read koding.school knowledge points and safely search course discussions and replies. |
-| [`koding-school-projects`](skills/koding-school-projects) | Browse signed-in koding.school projects, studios, profile, inbox, and account entry points without mutating data. |
-| [`statementdog-stock-analysis`](skills/statementdog-stock-analysis) | Inspect Statement Dog company pages, health checks, financial metrics, valuation, ownership, products, topics, and related news. |
-| [`statementdog-screening`](skills/statementdog-screening) | Build and verify Statement Dog custom screens, strategy lists, metric rankings, sorting, pagination, and comparisons. |
-| [`statementdog-market`](skills/statementdog-market) | Explore Statement Dog market, industry, topic, news, blog, and industry-report views. |
-| [`statementdog-watchlist`](skills/statementdog-watchlist) | Read signed-in Statement Dog feeds, tracking portfolios, and account areas without mutating the account. |
-| [`manny-pro-methodology`](skills/manny-pro-methodology) | Extract reusable business research methods from Manny Pro 商業解碼 articles. |
-| [`manny-pro-research`](skills/manny-pro-research) | Run Manny Pro-style value-chain, unit-economics, capital-efficiency, scenario, and reverse-valuation research. |
-| [`manny-pro-statementdog-bridge`](skills/manny-pro-statementdog-bridge) | Map Manny methods to Statement Dog facts, custom calculations, and external-data gaps. |
-| [`x-home-feed`](skills/x-home-feed) | Read X home timelines, including For You, Following, and visible custom timelines, without publishing or interacting. |
-| [`x-profile`](skills/x-profile) | Inspect X profiles, public timeline tabs, profile metadata, and profile entry points. |
-| [`x-search`](skills/x-search) | Search X with autocomplete and verify popular, latest, people, media, and list results. |
-| [`x-post`](skills/x-post) | Inspect X posts, conversations, quoted content, media, and available post analytics. |
+## Skill Directory
 
-## Website-specific Guidance
+The directory is organized by task domain first, then by platform or website package, with focused skills listed under each package.
 
-The [Tabelog site package](sites/tabelog/AGENTS.md) provides routing, session, freshness, and verification guidance for the Tabelog skills. Its [references](sites/tabelog/references) document the sitemap hierarchy, data model, and first-party explanations discovered during exploration.
+[Taiwan public data, law, education, and libraries](#taiwan-public-data-law-education-and-libraries) · [Markets, companies, and regulatory research](#markets-companies-and-regulatory-research) · [News, essays, and research databases](#news-essays-and-research-databases) · [Social, publishing, learning, and local discovery](#social-publishing-learning-and-local-discovery) · [Build website skills](#build-website-skills)
 
-The [X site package](sites/x/AGENTS.md) provides shared routing, autocomplete, post/profile data-model, session, and safety guidance for the X skills. Its [references](sites/x/references) document verified page types and interaction rules.
+### Taiwan Public Data, Law, Education, and Libraries
 
-The [Statement Dog site package](sites/statementdog/AGENTS.md) provides shared routing, authentication, freshness, and verification guidance for the four Statement Dog skills. Its [references](sites/statementdog/references) document the site map, data model, form controls, and first-party explanations.
+- **[Taiwan Government Open Data](sites/data-gov-tw/AGENTS.md)** — Search datasets, inspect metadata and resources, or follow platform news.
 
-The [橘蘋學習平台 site package](sites/koding-school/AGENTS.md) provides routing, public/authenticated session boundaries, freshness rules, and safe-operation guidance for the koding.school skills. Its skill references document the verified course, discussion, project, and studio page types.
+  Skills: [`tw-gov-data`](skills/tw-gov-data) · [`tw-gov-data-search`](skills/tw-gov-data-search) · [`tw-gov-data-dataset`](skills/tw-gov-data-dataset) · [`tw-gov-data-news`](skills/tw-gov-data-news)
 
-The [SEC.gov site package](sites/sec/AGENTS.md) provides shared EDGAR, Newsroom, rulemaking, public-comment, freshness, evidence, and safety guidance for the SEC skills. Its [references](sites/sec/references) document the route map, data model, first-party API/search guidance, and agent usability scenarios.
+- **Taiwan market data** — Fetch and analyze TWSE, TPEX, TAIFEX, and MOPS datasets with the `tw-stock` CLI.
 
-The [GlobeNewswire site package](sites/globenewswire/AGENTS.md) provides shared public newsroom, release, RSS, freshness, evidence, and authentication-boundary guidance for the three GlobeNewswire skills. Its [references](sites/globenewswire/references) document verified routes, the public data model, and first-party terminology.
+  Skill: [`tw-stock-data`](skills/tw-stock-data)
 
-The [Reuters site package](sites/reuters/AGENTS.md) provides shared public-navigation, sitemap, search, Markets, article, freshness, source, and safety guidance for the Reuters skills. Its [references](sites/reuters/references) document the route map, data model, controls, first-party guidance, and agent usability scenarios.
+- **[TDX](sites/tdx/AGENTS.md)** — Discover transport APIs and safely inspect authenticated member access, usage, and applications.
 
-The [PR Newswire site package](sites/pr-newswire/AGENTS.md) provides shared public-newsroom, product/resource, RSS, freshness, evidence, and authentication-boundary guidance for the three PR Newswire skills. Its [references](sites/pr-newswire/references) document the route map, public data model, controls, first-party terminology, and safety boundaries.
+  Skills: [`tdx-api-discovery`](skills/tdx-api-discovery) · [`tdx-member-data-access`](skills/tdx-member-data-access)
 
-## Usage
+- **[Taiwan Judicial legal search](sites/judicial-lawsearch/AGENTS.md)** — Route among legal and judgment systems, search public materials, and verify result pages.
 
-Use `website-skill-builder` when a website should become a reusable tool for future agents. It explores the current tab in Codex's built-in browser, starts with the site's sitemap when available, covers public functionality first, and proceeds into safe protected functionality when the current session is visibly authenticated; otherwise it asks before manual sign-in and protected exploration.
+  Skills: [`judicial-lawsearch-routing`](skills/judicial-lawsearch-routing) · [`judicial-lawsearch-legal`](skills/judicial-lawsearch-legal) · [`judicial-lawsearch-judgments`](skills/judicial-lawsearch-judgments)
 
-For Tabelog tasks, use `tabelog-search` for listings and filters, and `tabelog-restaurant` for restaurant details and subpages. Future agents should compare live UI and documentation with these files and update stable, verified differences when the workspace is writable.
+- **[Taiwan Laws & Regulations Database](sites/law-moj/AGENTS.md)** — Search laws, judicial materials, legal notices, scenario guides, and captured government content.
 
-For X tasks, route by intent to `x-home-feed`, `x-profile`, `x-search`, or `x-post`. Future agents should compare the live X UI with `sites/x/AGENTS.md` and keep search results, post content, metrics, and account data dynamic.
+  Skills: [`law-moj-law-search`](skills/law-moj-law-search) · [`law-moj-judicial-search`](skills/law-moj-judicial-search) · [`law-moj-news`](skills/law-moj-news) · [`law-moj-smart-search`](skills/law-moj-smart-search) · [`law-moj-cross-government`](skills/law-moj-cross-government)
 
-For Statement Dog tasks, route by intent to `statementdog-stock-analysis`, `statementdog-screening`, `statementdog-market`, or `statementdog-watchlist`. Future agents should compare the live UI with `sites/statementdog/AGENTS.md` and keep financial values, rankings, articles, market data, and account data dynamic.
+- **[Adaptive Learning Network (因材網)](sites/adl/AGENTS.md)** — Read public resources and inspect authenticated teacher workflows safely.
 
-For Manny Pro research tasks, use `manny-pro-methodology` to extract article methods, `manny-pro-research` for full company research, and `manny-pro-statementdog-bridge` to connect the methods to Statement Dog facts and external data gaps. Series notes, the method index, and the coverage matrix live under `sites/manny-pro/references`; the 10 method references live under `skills/manny-pro-methodology/references` and follow the Statement Dog industry-methodology pattern.
+  Skills: [`adl-public-resources`](skills/adl-public-resources) · [`adl-teacher-workflows`](skills/adl-teacher-workflows)
 
-For koding.school tasks, route course and lesson work to `koding-school-learning`, knowledge and discussion work to `koding-school-community`, and project/studio/account-entry work to `koding-school-projects`. Keep current progress, project records, messages, and other account data dynamic and private.
+- **[Substitute Teacher Talent Pool](sites/k12ea-ptst/AGENTS.md)** — Find current vacancies and read public recruitment guidance and announcements.
 
-For SEC.gov tasks, use `sec-filings-research` for CIK/company search, EDGAR full-text and latest filings, filing detail, or API/XBRL documentation; use `sec-regulatory-monitoring` for Newsroom, rulemaking, events, speeches, and public comments. Keep current filings, news, rule status, comment availability, and counts dynamic, and stop before filing or comment submission.
+  Skills: [`k12ea-ptst-job-search`](skills/k12ea-ptst-job-search) · [`k12ea-ptst-public-resources`](skills/k12ea-ptst-public-resources)
 
-For GlobeNewswire tasks, use `globenewswire-search` for public discovery, `globenewswire-release` for a specific release, and `globenewswire-rss` for syndication feeds. Keep current release rows, timestamps, tags, feed entries, and account data dynamic; stop at login, CAPTCHA, registration, publishing, sharing, or other irreversible actions.
+- **[National Library of Public Information](sites/nlpi/AGENTS.md)** — Search the site, find activities, route digital resources, and inspect member services read-only.
 
-For Reuters tasks, use `reuters-news-search` for site search and filters, `reuters-market-data` for Markets, quotes, tables, and regional tabs, and `reuters-article-research` for article details and source context. Keep current headlines, result counts, article text, rankings, prices, yields, and account data dynamic; stop before Save, Share, Subscribe, account, or purchase actions.
+  Skills: [`nlpi-site-search`](skills/nlpi-site-search) · [`nlpi-activity-search`](skills/nlpi-activity-search) · [`nlpi-digital-resources`](skills/nlpi-digital-resources) · [`nlpi-member-center`](skills/nlpi-member-center)
 
-For PR Newswire tasks, use `pr-newswire-search` for keyword/result-type discovery, `pr-newswire-news` for releases, categories, organizations, and multimedia, and `pr-newswire-resources` for products, resources, RSS, and first-party guidance. Keep current releases, timestamps, counts, resource listings, product claims, and account data dynamic; stop before sharing, submitting forms, solving CAPTCHA, entering credentials, or sending a release.
+### Markets, Companies, and Regulatory Research
+
+- **[Google Finance](sites/google-finance/AGENTS.md)** — Research quotes and comparisons, earnings calendars, financial statements, and ownership disclosures.
+
+  Skills: [`google-finance-market-research`](skills/google-finance-market-research) · [`google-finance-earnings`](skills/google-finance-earnings)
+
+- **[Koyfin](sites/koyfin/AGENTS.md)** — Monitor markets, resolve securities, research companies, and inspect personal workspaces read-only.
+
+  Skills: [`koyfin-market-monitoring`](skills/koyfin-market-monitoring) · [`koyfin-security-research`](skills/koyfin-security-research) · [`koyfin-advanced-search`](skills/koyfin-advanced-search) · [`koyfin-watchlists-and-screens`](skills/koyfin-watchlists-and-screens)
+
+- **[Statement Dog](sites/statementdog/AGENTS.md)** — Analyze companies, screen stocks, explore markets, inspect watchlists, and turn reports into reproducible research.
+
+  Skills: [`statementdog-stock-analysis`](skills/statementdog-stock-analysis) · [`statementdog-screening`](skills/statementdog-screening) · [`statementdog-market`](skills/statementdog-market) · [`statementdog-watchlist`](skills/statementdog-watchlist) · [`statementdog-stock-research`](skills/statementdog-stock-research)
+
+- **[Seeking Alpha](sites/seeking-alpha/AGENTS.md)** — Research a security, build stock or ETF screens, or investigate market-wide news and calendars.
+
+  Skills: [`seeking-alpha-stock-analysis`](skills/seeking-alpha-stock-analysis) · [`seeking-alpha-screening`](skills/seeking-alpha-screening) · [`seeking-alpha-market-research`](skills/seeking-alpha-market-research)
+
+- **[SEC.gov](sites/sec/AGENTS.md)** — Search EDGAR filings and monitor current SEC news, rulemaking, events, and public-comment dockets.
+
+  Skills: [`sec-filings-research`](skills/sec-filings-research) · [`sec-regulatory-monitoring`](skills/sec-regulatory-monitoring)
+
+- **[FRED](sites/fred/AGENTS.md)** — Find economic series and observations or inspect release schedules and calendars.
+
+  Skills: [`fred-series-data`](skills/fred-series-data) · [`fred-release-calendar`](skills/fred-release-calendar)
+
+- **[AnnualReports.com](sites/annualreports/AGENTS.md)** — Find companies and verify current or archived annual-report links and formats.
+
+  Skills: [`annualreports-search`](skills/annualreports-search) · [`annualreports-company`](skills/annualreports-company)
+
+### News, Essays, and Research Databases
+
+- **[Reuters](sites/reuters/AGENTS.md)** — Search news, inspect market data, and read article details with source and access context.
+
+  Skills: [`reuters-news-search`](skills/reuters-news-search) · [`reuters-market-data`](skills/reuters-market-data) · [`reuters-article-research`](skills/reuters-article-research)
+
+- **[GlobeNewswire](sites/globenewswire/AGENTS.md)** — Search public releases, inspect release details, and locate RSS or ATOM feeds.
+
+  Skills: [`globenewswire-search`](skills/globenewswire-search) · [`globenewswire-release`](skills/globenewswire-release) · [`globenewswire-rss`](skills/globenewswire-rss)
+
+- **[PR Newswire](sites/pr-newswire/AGENTS.md)** — Find and verify releases, organizations, multimedia, products, resources, and RSS guidance.
+
+  Skills: [`pr-newswire-search`](skills/pr-newswire-search) · [`pr-newswire-news`](skills/pr-newswire-news) · [`pr-newswire-resources`](skills/pr-newswire-resources)
+
+- **[Manny Pro](sites/manny-pro/AGENTS.md)** — Read site content, extract reusable business methods, conduct company research, and connect methods to Statement Dog evidence.
+
+  Skills: [`manny-pro-content`](skills/manny-pro-content) · [`manny-pro-methodology`](skills/manny-pro-methodology) · [`manny-pro-research`](skills/manny-pro-research) · [`manny-pro-statementdog-bridge`](skills/manny-pro-statementdog-bridge)
+
+- **[Paul Graham](sites/paul-graham/AGENTS.md)** — Find and compare essays or inspect books, language projects, FAQs, feeds, and other reference pages.
+
+  Skills: [`paul-graham-essay-research`](skills/paul-graham-essay-research) · [`paul-graham-reference-research`](skills/paul-graham-reference-research)
+
+- **[Web of Science](sites/webofscience/AGENTS.md)** — Search documents and cited references, find researchers, and inspect authenticated profiles and metrics.
+
+  Skills: [`wos-document-search`](skills/wos-document-search) · [`wos-researcher-search`](skills/wos-researcher-search) · [`wos-researcher-profile`](skills/wos-researcher-profile)
+
+### Social, Publishing, Learning, and Local Discovery
+
+- **[X](sites/x/AGENTS.md)** — Read home feeds, profiles, searches, posts, conversations, media, and available analytics.
+
+  Skills: [`x-home-feed`](skills/x-home-feed) · [`x-profile`](skills/x-profile) · [`x-search`](skills/x-search) · [`x-post`](skills/x-post)
+
+- **[Threads](sites/threads/AGENTS.md)** — Search public content, inspect profiles and posts, or review authenticated activity, insights, and messaging surfaces read-only.
+
+  Skills: [`threads-search`](skills/threads-search) · [`threads-profile`](skills/threads-profile) · [`threads-post`](skills/threads-post) · [`threads-activity`](skills/threads-activity) · [`threads-insights`](skills/threads-insights) · [`threads-messages`](skills/threads-messages)
+
+- **[Facebook](sites/facebook/AGENTS.md)** — Navigate Facebook safely, search public result types, and inspect Marketplace listings without interacting.
+
+  Skills: [`facebook-navigation`](skills/facebook-navigation) · [`facebook-search`](skills/facebook-search) · [`facebook-marketplace`](skills/facebook-marketplace)
+
+- **[vocus](sites/vocus/AGENTS.md)** — Search and read content, salons, and products or inspect Salon Studio read-only.
+
+  Skills: [`vocus-search`](skills/vocus-search) · [`vocus-content-reader`](skills/vocus-content-reader) · [`vocus-salon`](skills/vocus-salon) · [`vocus-product`](skills/vocus-product) · [`vocus-studio`](skills/vocus-studio)
+
+- **[koding.school](sites/koding-school/AGENTS.md)** — Browse courses and lessons, read community discussions, and inspect projects or studios safely.
+
+  Skills: [`koding-school-learning`](skills/koding-school-learning) · [`koding-school-community`](skills/koding-school-community) · [`koding-school-projects`](skills/koding-school-projects)
+
+- **[PokecaBook](sites/pokecabook/AGENTS.md)** — Search Pokémon Trading Card Game content, research articles and events, and compare deck recipes or card adoption.
+
+  Skills: [`pokecabook-site-search`](skills/pokecabook-site-search) · [`pokecabook-content-research`](skills/pokecabook-content-research) · [`pokecabook-deck-analytics`](skills/pokecabook-deck-analytics)
+
+- **[Tabelog](sites/tabelog/AGENTS.md)** — Search restaurants and inspect restaurant details, menus, photos, reviews, maps, and availability.
+
+  Skills: [`tabelog-search`](skills/tabelog-search) · [`tabelog-restaurant`](skills/tabelog-restaurant)
+
+### Build Website Skills
+
+- **Website skill builder** — Explore a website systematically, map stable behavior and data structures, and create maintainable site guidance and focused skills.
+
+  Skill: [`website-skill-builder`](skills/website-skill-builder)
+
+## Repository Layout
+
+```text
+skills/<skill-name>/SKILL.md          Focused task instructions
+skills/<skill-name>/agents/           Agent metadata, when provided
+sites/<site>/AGENTS.md                Shared site-level operating guidance
+sites/<site>/references/              Stable routes, controls, and data models
+```
+
+Live page content remains dynamic. The repository records reusable operating knowledge, not cached answers or private session data.
 
 ## Installation
 
-You can browse and install skills from this repository using the [Vercel skills CLI](https://skills.sh/docs/cli).
-
-### Using Vercel skills CLI
+Browse and install skills with the [Vercel skills CLI](https://skills.sh/docs/cli):
 
 ```sh
-# Interactively browse and install skills from this repo.
+# Browse every installable skill in this repository.
 npx skills add lloyd3126/chenchungnien-skills --list
 
-# Install a specific skill globally.
-npx skills add lloyd3126/chenchungnien-skills --skill tw-gov-data --global
-npx skills add lloyd3126/chenchungnien-skills --skill tw-stock-data --global
-npx skills add lloyd3126/chenchungnien-skills --skill website-skill-builder --global
-npx skills add lloyd3126/chenchungnien-skills --skill pr-newswire-search --global
-npx skills add lloyd3126/chenchungnien-skills --skill pr-newswire-news --global
-npx skills add lloyd3126/chenchungnien-skills --skill pr-newswire-resources --global
-npx skills add lloyd3126/chenchungnien-skills --skill sec-filings-research --global
-npx skills add lloyd3126/chenchungnien-skills --skill sec-regulatory-monitoring --global
-npx skills add lloyd3126/chenchungnien-skills --skill tabelog-search --global
-npx skills add lloyd3126/chenchungnien-skills --skill tabelog-restaurant --global
-npx skills add lloyd3126/chenchungnien-skills --skill statementdog-stock-analysis --global
-npx skills add lloyd3126/chenchungnien-skills --skill statementdog-screening --global
-npx skills add lloyd3126/chenchungnien-skills --skill statementdog-market --global
-npx skills add lloyd3126/chenchungnien-skills --skill statementdog-watchlist --global
-npx skills add lloyd3126/chenchungnien-skills --skill manny-pro-methodology --global
-npx skills add lloyd3126/chenchungnien-skills --skill manny-pro-research --global
-npx skills add lloyd3126/chenchungnien-skills --skill manny-pro-statementdog-bridge --global
-npx skills add lloyd3126/chenchungnien-skills --skill x-home-feed --global
-npx skills add lloyd3126/chenchungnien-skills --skill x-profile --global
-npx skills add lloyd3126/chenchungnien-skills --skill x-search --global
-npx skills add lloyd3126/chenchungnien-skills --skill x-post --global
+# Install one skill globally; replace the name with any linked skill above.
+npx skills add lloyd3126/chenchungnien-skills --skill wos-document-search --global
 ```

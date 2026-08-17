@@ -1,0 +1,7 @@
+interface:
+  display_name: "國資圖全站搜尋"
+  short_description: "搜尋國資圖頁面、公告、服務與一方說明"
+  default_prompt: "Use $nlpi-site-search in the Codex in-app browser to search the NLPI website and verify current results."
+
+policy:
+  allow_implicit_invocation: true

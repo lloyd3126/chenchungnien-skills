@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paul Graham Essays"
+  short_description: "Research essays through the built-in browser"
+  default_prompt: "Use $paul-graham-essay-research to find and verify a Paul Graham essay."

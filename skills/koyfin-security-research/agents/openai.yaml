@@ -1,0 +1,4 @@
+interface:
+  display_name: "Koyfin 證券研究"
+  short_description: "在 Koyfin 唯讀研究單一股票、ETF 或其他證券"
+  default_prompt: "Use $koyfin-security-research to resolve the exact security and research its Snapshot, estimates, financials, news, filings, transcripts, or charts through the Codex in-app browser."

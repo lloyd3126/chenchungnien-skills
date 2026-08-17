@@ -1,0 +1,4 @@
+interface:
+  display_name: "Koyfin 工作區"
+  short_description: "唯讀檢查 Koyfin watchlist、screen、portfolio 與 dashboard"
+  default_prompt: "Use $koyfin-watchlists-and-screens to inspect the visible Koyfin My Koyfin workspace read-only, preserving privacy and stopping before mutations."

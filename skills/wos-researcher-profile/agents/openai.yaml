@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web of Science Researcher Profile"
+  short_description: "Read researcher profiles and settings"
+  default_prompt: "Use $wos-researcher-profile in the Codex in-app browser to inspect an authenticated Web of Science researcher profile, metrics, records, or settings without changing account state."

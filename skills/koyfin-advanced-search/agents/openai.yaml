@@ -1,0 +1,4 @@
+interface:
+  display_name: "Koyfin 進階搜尋"
+  short_description: "消歧證券並搜尋 Koyfin 逐字稿"
+  default_prompt: "Use $koyfin-advanced-search to resolve an exact Koyfin security listing or search transcripts by terms and filters through the Codex in-app browser."

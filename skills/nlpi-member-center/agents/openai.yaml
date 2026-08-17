@@ -1,0 +1,7 @@
+interface:
+  display_name: "國資圖會員中心"
+  short_description: "唯讀查看會員中心、借閱預約 tab 與服務入口"
+  default_prompt: "Use $nlpi-member-center in the Codex in-app browser to inspect the authenticated NLPI member center without changing account state."
+
+policy:
+  allow_implicit_invocation: true

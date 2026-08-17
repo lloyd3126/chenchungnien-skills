@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDX Member Data Access"
+  short_description: "Use TDX member data and history workflows"
+  default_prompt: "Use $tdx-member-data-access to inspect TDX API keys, permissions, usage, or historical-data requests safely."

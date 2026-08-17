@@ -1,0 +1,4 @@
+interface:
+  display_name: "PokecaBook Site Search"
+  short_description: "Search PokecaBook and verify live results."
+  default_prompt: "Use $pokecabook-site-search to search PokecaBook in the in-app browser and verify the live result state."

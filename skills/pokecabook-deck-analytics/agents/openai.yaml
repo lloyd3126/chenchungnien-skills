@@ -1,0 +1,4 @@
+interface:
+  display_name: "PokecaBook Deck Analytics"
+  short_description: "Filter deck recipes and card adoption."
+  default_prompt: "Use $pokecabook-deck-analytics to filter PokecaBook deck or card-adoption data and verify the live result state."

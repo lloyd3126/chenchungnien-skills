@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vocus Salon Studio"
+  short_description: "Inspect authenticated salon analytics and management"
+  default_prompt: "Use $vocus-studio to inspect an authenticated vocus Salon Studio page without changing account state."

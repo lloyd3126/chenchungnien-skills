@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vocus Search"
+  short_description: "Search and filter vocus content"
+  default_prompt: "Use $vocus-search to search vocus content, creators, salons, or tags through the in-app browser."

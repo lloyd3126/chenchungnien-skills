@@ -1,0 +1,4 @@
+interface:
+  display_name: "TW Gov Data Search"
+  short_description: "Search and filter Taiwan government datasets."
+  default_prompt: "Use $tw-gov-data-search to find and filter datasets on data.gov.tw."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Finance Earnings"
+  short_description: "Read earnings calendars and company fundamentals"
+  default_prompt: "Use $google-finance-earnings to inspect an earnings calendar or a company earnings and financials page in Google Finance."

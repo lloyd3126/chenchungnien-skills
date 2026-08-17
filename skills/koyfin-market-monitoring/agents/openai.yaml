@@ -1,0 +1,4 @@
+interface:
+  display_name: "Koyfin 市場監控"
+  short_description: "在 Koyfin 唯讀檢查新聞、指數、行情與財經日曆"
+  default_prompt: "Use $koyfin-market-monitoring to inspect the current Koyfin market news, movers, indices, scatter/charts, earnings calendar, or economic calendar through the Codex in-app browser."

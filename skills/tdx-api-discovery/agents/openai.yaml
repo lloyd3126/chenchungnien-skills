@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDX API Discovery"
+  short_description: "Discover TDX APIs and transport datasets"
+  default_prompt: "Use $tdx-api-discovery to find and verify the right TDX data service, API documentation, or supply-status source."

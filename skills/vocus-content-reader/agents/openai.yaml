@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vocus Content Reader"
+  short_description: "Read vocus articles, posts, and profiles"
+  default_prompt: "Use $vocus-content-reader to read a vocus article, post, author profile, or discussion safely."

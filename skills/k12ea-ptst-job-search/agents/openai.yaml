@@ -1,0 +1,4 @@
+interface:
+  display_name: "K12EA PTST Job Search"
+  short_description: "Search public PTST vacancies and inspect job details"
+  default_prompt: "Use $k12ea-ptst-job-search in the Codex in-app browser to search and verify current PTST vacancies, filters, result rows, and detail pages without submitting applications."

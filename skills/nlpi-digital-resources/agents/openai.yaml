@@ -1,0 +1,7 @@
+interface:
+  display_name: "國資圖數位資源"
+  short_description: "理解數位資源入口、電子書與一證通路由"
+  default_prompt: "Use $nlpi-digital-resources in the Codex in-app browser to explain NLPI digital-resource routes and eligibility without logging in or submitting forms."
+
+policy:
+  allow_implicit_invocation: true

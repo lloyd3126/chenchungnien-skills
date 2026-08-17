@@ -1,0 +1,7 @@
+interface:
+  display_name: "因材網公開資源"
+  short_description: "唯讀檢視因材網消息、活動、手冊與 FAQ"
+  default_prompt: "Use $adl-public-resources in the Codex in-app browser to find and verify current 教育部因材網 public news, activities, manuals, FAQs, or account guidance."
+
+policy:
+  allow_implicit_invocation: true

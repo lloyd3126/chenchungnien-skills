@@ -1,0 +1,7 @@
+interface:
+  display_name: "國資圖活動搜尋"
+  short_description: "依時間、分眾、主題與關鍵字找活動"
+  default_prompt: "Use $nlpi-activity-search in the Codex in-app browser to find current NLPI activities, verify filters, and read a detail page without registering."
+
+policy:
+  allow_implicit_invocation: true

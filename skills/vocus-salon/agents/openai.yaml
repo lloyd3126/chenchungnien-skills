@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vocus Salon"
+  short_description: "Browse vocus salons and rooms"
+  default_prompt: "Use $vocus-salon to inspect a vocus salon homepage, rooms, content, or public profile."

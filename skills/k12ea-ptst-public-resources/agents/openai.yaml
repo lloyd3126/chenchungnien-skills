@@ -1,0 +1,4 @@
+interface:
+  display_name: "K12EA PTST Public Resources"
+  short_description: "Read PTST public guides, news, laws, and FAQs"
+  default_prompt: "Use $k12ea-ptst-public-resources in the Codex in-app browser to read and verify PTST announcements, county support measures, job-seeker guidance, laws, FAQs, about content, and teaching links."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web of Science Document Search"
+  short_description: "Search documents and inspect records"
+  default_prompt: "Use $wos-document-search in the Codex in-app browser to search Web of Science documents or cited references and verify a same-site Full Record."

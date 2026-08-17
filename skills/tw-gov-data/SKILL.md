@@ -7,6 +7,14 @@ description: Search, inspect, compare, and summarize datasets from data.gov.tw. 
 
 Use this skill when the user wants to discover, inspect, compare, or inventory datasets listed on `data.gov.tw`.
 
+For tasks that explicitly operate the data.gov.tw website in the Codex in-app browser, route to the focused UI skills:
+
+- `$tw-gov-data-search` for keyword, advanced, facet, provider, category, format, API-service, sorting, pagination, and result-export workflows.
+- `$tw-gov-data-dataset` for a `/dataset/<nid>` page, file/API resources, DCAT vocabulary, related datasets, and metadata freshness.
+- `$tw-gov-data-news` for current news, upload/removal notices, open-data updates, RSS, and news exports.
+
+The API-oriented procedures below remain for metadata retrieval tasks where non-browser access is explicitly allowed; they do not override a site-level or user request to use only the in-app browser.
+
 This skill is for dataset discovery and metadata inspection, not schema validation. Do not use `schema.gov.tw` for this skill unless the user explicitly changes scope.
 
 ## When To Use This Skill

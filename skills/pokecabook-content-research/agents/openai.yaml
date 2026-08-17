@@ -1,0 +1,4 @@
+interface:
+  display_name: "PokecaBook Content Research"
+  short_description: "Research tournament, deck, and card pages."
+  default_prompt: "Use $pokecabook-content-research to research PokecaBook tournament, deck, card-list, or rule content in the in-app browser."

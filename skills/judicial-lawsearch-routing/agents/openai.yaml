@@ -1,0 +1,3 @@
+interface:
+  display_name: "Judicial Legal Search Routing"
+  short_description: "Route searches to the Judicial legal subsystems"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TW Gov Data News"
+  short_description: "Find updates and dataset announcements."
+  default_prompt: "Use $tw-gov-data-news to find current data.gov.tw updates or announcements."

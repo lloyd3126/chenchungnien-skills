@@ -1,0 +1,4 @@
+interface:
+  display_name: "TW Gov Data Dataset"
+  short_description: "Inspect dataset metadata and resources."
+  default_prompt: "Use $tw-gov-data-dataset to inspect a data.gov.tw dataset and its resources."
