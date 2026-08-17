@@ -1,0 +1,4 @@
+interface:
+  display_name: "曼報 Pro Content"
+  short_description: "Browse 曼報 Pro articles and podcast content"
+  default_prompt: "Use $manny-pro-content in the Codex in-app browser to find or verify 曼報 Pro articles, Podcast episodes, content tags, or plan FAQ answers. Keep protected and billing actions read-only unless I explicitly ask and confirm the final action."
