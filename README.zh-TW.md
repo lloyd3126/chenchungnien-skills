@@ -11,64 +11,64 @@
 - 要執行既有任務：從下方領域找到需求，選擇範圍最精準的 skill。
 - 要了解整個支援網站：點選套件名稱，開啟該網站共用的 `AGENTS.md` 指引。
 - 要把新網站整理成可重用的指引與 skills：使用 `website-skill-builder`。
-- 要查看仍需現場驗證的部分：使用套件前先讀取[已知未驗證流程](#已知未驗證流程)。
+- 要比較已確認的覆蓋範圍與剩餘缺口：使用套件前先讀取[流程驗證狀態](#流程驗證狀態)。
 
 瀏覽器型 skills 預設依目前可驗證的頁面狀態進行唯讀探索。帳密、session 資料、即時數量與單次搜尋結果不會寫入長期指引；發布、購買、送出、傳訊或變更帳號狀態等操作，都需要明確授權。
 
-## 已知未驗證流程
+## 流程驗證狀態
 
-這裡集中列出各網站套件已明確記錄的缺口。`未驗證` 或 `partial` 表示流程未能在當時可用的 Codex 內建瀏覽器 session 中完整走完；**不代表功能無法使用或不存在**。使用下列流程前，必須先讀取連結的詳細來源並依目前 UI 重新確認。
+這裡集中列出各網站套件已明確記錄的證據與缺口。`已驗證` 表示至少一條代表性唯讀路徑具有目前分頁的 UI 或 DOM／interaction 證據；不代表所有資料、權限變體或動態值都已測試。`未驗證` 或 `partial` 表示流程未能在當時可用的 Codex 內建瀏覽器 session 中完整走完；**不代表功能無法使用或不存在**。
 
 所有套件中的狀態變更操作——登入／登出、帳號修改、儲存／追蹤、發布、留言、傳訊、表單送出、預約、購買、付款、上傳、建立憑證或 token、CAPTCHA 與第三方授權——均視為刻意未測；除非套件明確記錄已驗證，而且使用者已授權該次操作。
 
-### 台灣公共資料、法律、教育與圖書館
+### 台灣公共資料、法律、教育與圖書館：驗證狀態
 
-| 套件 | 未驗證或僅部分驗證的流程 |
-| :--- | :--- |
-| [政府資料開放平臺](sites/data-gov-tw/references/site-map.md) | `專欄文章` 與統計資料只有路由層級紀錄；登入後留言／帳號功能、RSS payload、外部資源與下載流程未完整探索。 |
-| [TDX 運輸資料流通服務](sites/tdx/AGENTS.md) | 個人帳號詳細資料停在密碼驗證門檻；購買、刪除、申請與其他送出流程未執行。 |
-| [司法院法學資料檢索](sites/judicial-lawsearch/references/first-party-guidance.md) | 未探索受保護內容；裁判書系統說明頁逾時，因此完整收錄範圍與更新週期仍未驗證。 |
-| [全國法規資料庫](sites/law-moj/references/site-map.md) | E 政府登入、最愛法規與自訂資料夾未驗證；部分司法單筆、跨機關、refresh、API 與智慧查找長頁只有 DOM 證據，未完成完整視覺驗證。 |
-| [教育部因材網](sites/adl/references/coverage.md) | 課程總覽、AI 學伴與完整受保護教師側欄仍需在登入狀態重驗；任務指派、班級／學生修改、匯入、上傳與帳號操作刻意未測。 |
-| [國中小代理代課教師人才庫](sites/k12ea-ptst/AGENTS.md) | 登入後履歷、收藏、完整聯絡資料、三招以上資訊、主動應徵、媒合與求才者／管理後台未探索。 |
-| [國立公共資訊圖書館](sites/nlpi/AGENTS.md) | `myispace`、`myactivity` 回傳網站錯誤，`myebook` 遭 client block；外部會員服務未深入探索，活動的單獨近 7 天／關鍵字篩選也不穩定。 |
+| 套件 | 已驗證流程 | 未驗證或僅部分驗證的流程 |
+| :--- | :--- | :--- |
+| [政府資料開放平臺](sites/data-gov-tw/references/site-map.md) | 資料集搜尋、進階篩選、排序與分頁；代表性資料集 metadata 與檔案／API 資源；消息列表與詳細頁。 | `專欄文章` 與統計資料只有路由層級紀錄；登入後留言／帳號功能、RSS payload、外部資源與下載流程未完整探索。 |
+| [TDX 運輸資料流通服務](sites/tdx/AGENTS.md) | 公開服務探索、API／OAS 指引、資料標準、供應狀態、統計與資料市集頁；登入後 key、權限、用量、申請與訂閱介面唯讀檢視。 | 個人帳號詳細資料停在密碼驗證門檻；購買、刪除、申請與其他送出流程未執行。 |
+| [司法院法學資料檢索](sites/judicial-lawsearch/references/first-party-guidance.md) | 入口分流、公開法規／判解函釋／裁判書搜尋，以及代表性結果與裁判詳細頁。 | 未探索受保護內容；裁判書系統說明頁逾時，因此完整收錄範圍與更新週期仍未驗證。 |
+| [全國法規資料庫](sites/law-moj/references/site-map.md) | 中央法規搜尋與全文、司法資料、法規異動公告、智慧查找主題與跨機關搜尋結果頁。 | E 政府登入、最愛法規與自訂資料夾未驗證；部分司法單筆、跨機關、refresh、API 與智慧查找長頁只有 DOM 證據，未完成完整視覺驗證。 |
+| [教育部因材網](sites/adl/references/coverage.md) | 公開首頁、消息、活動、操作手冊、FAQ 與網站導覽；初始登入教師 dashboard 及可見任務區域。 | 課程總覽、AI 學伴與完整受保護教師側欄仍需在登入狀態重驗；任務指派、班級／學生修改、匯入、上傳與帳號操作刻意未測。 |
+| [國中小代理代課教師人才庫](sites/k12ea-ptst/AGENTS.md) | 公開職缺篩選與連動控制、結果與詳細頁；消息、縣市支援、求職指引、法規、FAQ、關於與網站導覽。 | 登入後履歷、收藏、完整聯絡資料、三招以上資訊、主動應徵、媒合與求才者／管理後台未探索。 |
+| [國立公共資訊圖書館](sites/nlpi/AGENTS.md) | 全站搜尋、活動日曆與詳情、數位資源分流，以及會員中心主要 tabs 與服務卡唯讀檢視。 | `myispace`、`myactivity` 回傳網站錯誤，`myebook` 遭 client block；外部會員服務未深入探索，活動的單獨近 7 天／關鍵字篩選也不穩定。 |
 
-### 市場、公司與監管研究
+### 市場、公司與監管研究：驗證狀態
 
-| 套件 | 未驗證或僅部分驗證的流程 |
-| :--- | :--- |
-| [Google 財經](sites/google-finance/AGENTS.md) | 未登入變體仍未確認；研究問題送出、討論串／工作、深度搜尋、觀察清單分析、清單與投資組合建立均未執行。 |
-| [Koyfin](sites/koyfin/references/coverage.md) | Advisor Tools、其餘 Market Overview 子頁與個別新聞稿／逐字稿頁未驗證；My Graphs 只有 partial 證據。 |
-| [財報狗](sites/statementdog/references/site-map.md) | 網誌搜尋送出效果未確認，公司比較僅 partial；儲存選股、修改追蹤／帳號、付款與留言未執行。 |
-| [Seeking Alpha](sites/seeking-alpha/references/site-map.md) | Portfolio、訂閱、Investing Groups 與帳號相依內容未驗證；自訂 screener 欄位、操作符、排序、reset、儲存與比較未完整測試。 |
-| [SEC.gov](sites/sec/AGENTS.md) | 登入與 filer-management 分支未探索；filing、public comment、tip／complaint、訂閱、API token、上傳與帳號操作均未送出。 |
-| [FRED](sites/fred/references/site-map.md) | Release／source／category 詳情、帳號功能、Add-in、行動 App、地圖與 ALFRED 未深入探索；Help 詳細面板停在載入 spinner。 |
-| [AnnualReports.com](sites/annualreports/references/exploration-checklist.md) | Current report 目標未在新分頁驗證；分頁／排序、登入變體、外部合作網站、評分、紙本申請、Add Company 與寄送表單仍未驗證或刻意未測。 |
+| 套件 | 已驗證流程 | 未驗證或僅部分驗證的流程 |
+| :--- | :--- | :--- |
+| [Google 財經](sites/google-finance/AGENTS.md) | 金融實體搜尋與消歧、報價頁、圖表區間與比較；市場瀏覽、財報行事曆、公司收益、財務報表與持有資產揭露。 | 未登入變體仍未確認；研究問題送出、討論串／工作、深度搜尋、觀察清單分析、清單與投資組合建立均未執行。 |
+| [Koyfin](sites/koyfin/references/coverage.md) | 證券與逐字稿搜尋；公司摘要、估計、財務、新聞與圖表；市場新聞、異動、指數與行事曆；watchlists、screens、portfolio 與 sample dashboard 唯讀檢視。 | Advisor Tools、其餘 Market Overview 子頁與個別新聞稿／逐字稿頁未驗證；My Graphs 只有 partial 證據。 |
+| [財報狗](sites/statementdog/references/site-map.md) | 公司分析頁、自訂選股與排行榜、市場／產業／題材／新聞／報告，以及登入後動態、portfolio 與帳號欄位唯讀檢視。 | 網誌搜尋送出效果未確認，公司比較僅 partial；儲存選股、修改追蹤／帳號、付款與留言未執行。 |
+| [Seeking Alpha](sites/seeking-alpha/references/site-map.md) | 公開股票／ETF 頁與研究 tabs、預設 screeners 與結果表、市場／新聞探索、站內搜尋與財報行事曆。 | Portfolio、訂閱、Investing Groups 與帳號相依內容未驗證；自訂 screener 欄位、操作符、排序、reset、儲存與比較未完整測試。 |
+| [SEC.gov](sites/sec/AGENTS.md) | 公司／CIK 查詢、EDGAR 全文與最新 filings、filing details、API 指引，以及 Newsroom、rulemaking、活動與 public-comment 頁。 | 登入與 filer-management 分支未探索；filing、public comment、tip／complaint、訂閱、API token、上傳與帳號操作均未送出。 |
+| [FRED](sites/fred/references/site-map.md) | 關鍵字／autocomplete 探索、代表性 series metadata 與 observations、圖表／匯出控制，以及 release catalog 與 calendar 日期／排序控制。 | Release／source／category 詳情、帳號功能、Add-in、行動 App、地圖與 ALFRED 未深入探索；Help 詳細面板停在載入 spinner。 |
+| [AnnualReports.com](sites/annualreports/references/exploration-checklist.md) | 關鍵字與公司篩選、代表性公司頁、歷年報告展開與格式、Featured Reports、About／FAQ 與表單欄位檢視。 | Current report 目標未在新分頁驗證；分頁／排序、登入變體、外部合作網站、評分、紙本申請、Add Company 與寄送表單仍未驗證或刻意未測。 |
 
-### 新聞、文章與研究資料庫
+### 新聞、文章與研究資料庫：驗證狀態
 
-| 套件 | 未驗證或僅部分驗證的流程 |
-| :--- | :--- |
-| [Reuters](sites/reuters/AGENTS.md) | My News、儲存／追蹤後內容、帳號、註冊／登入、訂閱、付費內容與個人化資料未驗證。 |
-| [GlobeNewswire](sites/globenewswire/references/site-map.md) | RSS 的 Industry／Location tabs 與主要搜尋篩選的選項／結果仍為 partial；客戶／讀者帳號流程未探索。 |
-| [PR Newswire](sites/pr-newswire/AGENTS.md) | 受保護的 Amplify workspace 尚未確認；客戶登入、建立帳號、發稿、Demo／Contact、行銷表單、社群分享與 CAPTCHA 刻意未完成。 |
-| [曼報 Pro](sites/manny-pro/references/site-map.md) | Account Profile 僅 partial；會員管理、取消訂閱、退款、付款、更改付款資訊、登出與 Apple／Spotify 綁定未測試。 |
-| [Paul Graham](sites/paul-graham/references/agent-usability.md) | 外部 Y Combinator、Amazon、社群／論壇與 feed 目的地未探索；寄信、購買、申請與互動流程刻意未測。 |
-| [Web of Science](sites/webofscience/references/exploration-checklist.md) | Query Builder 的獨立行為、Research Assistant cards、匯出／alerts／marked lists、目前登入 profile 重驗、ORCID syncing、Account Settings、My Records 子頁與出版商／產品頁仍未確認。 |
+| 套件 | 已驗證流程 | 未驗證或僅部分驗證的流程 |
+| :--- | :--- | :--- |
+| [Reuters](sites/reuters/AGENTS.md) | 站內搜尋、section／日期篩選與排序；Markets 區域 tabs 與行情表；文章 metadata、摘要、可見正文與來源脈絡。 | My News、儲存／追蹤後內容、帳號、註冊／登入、訂閱、付費內容與個人化資料未驗證。 |
+| [GlobeNewswire](sites/globenewswire/references/site-map.md) | 首頁／Newsroom 與分類導覽、關鍵字與組織結果、分頁、新聞稿詳情、相關新聞稿與 RSS／ATOM 格式。 | RSS 的 Industry／Location tabs 與主要搜尋篩選的選項／結果仍為 partial；客戶／讀者帳號流程未探索。 |
+| [PR Newswire](sites/pr-newswire/AGENTS.md) | 搜尋、新聞稿／分類／組織列表、單篇新聞稿與多媒體，以及公開產品、資源與 RSS 指引頁。 | 受保護的 Amplify workspace 尚未確認；客戶登入、建立帳號、發稿、Demo／Contact、行銷表單、社群分享與 CAPTCHA 刻意未完成。 |
+| [曼報 Pro](sites/manny-pro/references/site-map.md) | 公開與登入後文章／集數列表、access tabs、tags、排序、詳細頁、載入更多、方案 FAQ 與 Account Profile 區塊唯讀檢視。 | Account Profile 僅 partial；會員管理、取消訂閱、退款、付款、更改付款資訊、登出與 Apple／Spotify 綁定未測試。 |
+| [Paul Graham](sites/paul-graham/references/agent-usability.md) | Essays 列表與 index、文章詳細頁與 Prev／Next，以及公開 Books、Arc／Bel／Lisp／Spam、Responses、FAQ、Quotes、RSS、Bio 與聯絡參考頁。 | 外部 Y Combinator、Amazon、社群／論壇與 feed 目的地未探索；寄信、購買、申請與互動流程刻意未測。 |
+| [Web of Science](sites/webofscience/references/exploration-checklist.md) | Smart／fielded／cited-reference search、結果 refinement／sorting／analysis 與 Full Records；研究者搜尋與 profiles；登入後 profile metrics、records 與主要 settings 唯讀檢視。 | Query Builder 的獨立行為、Research Assistant cards、匯出／alerts／marked lists、目前登入 profile 重驗、ORCID syncing、Account Settings、My Records 子頁與出版商／產品頁仍未確認。 |
 
-### 社群、內容發布、學習與在地探索
+### 社群、內容發布、學習與在地探索：驗證狀態
 
-| 套件 | 未驗證或僅部分驗證的流程 |
-| :--- | :--- |
-| [X](sites/x/references/site-map.md) | 通知、私訊、歷史記錄、帳號設定、Grok、Premium、Creator Studio、Articles、Spaces、廣告、第三方登入與付款未探索。 |
-| [Threads](sites/threads/references/site-map.md) | 指定日期之前／自訂日期／指定 profile 搜尋篩選與 profile-to-author-search 路由未完整驗證；部分 Insights detail 與新訊息流程仍停在 loading skeleton。 |
-| [Facebook](sites/facebook/AGENTS.md) | 社團個人化動態、帳號設定實際變更、訊息、發文／互動、付款與 Marketplace 刊登流程未測試。 |
-| [vocus](sites/vocus/AGENTS.md) | 部分重型 feed／沙龍頁只有 DOM 或 partial 視覺證據；購買、會員變更、發布與 Studio 寫入操作刻意未執行。 |
-| [koding.school](sites/koding-school/references/exploration-checklist.md) | 專案編輯器、回收桶、工作室建立／移除、帳號更新、私訊本文、付款、訂單與訂閱仍未驗證。 |
-| [PokecaBook](sites/pokecabook/references/site-map.md) | 未觀察到登入／帳戶分支；透過 X DM 詢問、reCAPTCHA、外部目的地與不可逆流程均未測試。 |
-| [Tabelog](sites/tabelog/references/site-map.md) | 第三方認證、登入後導覽、收藏／已去過清單、評論編輯器、個人化推薦、會員排名、預約帳戶、實際訂位與付款仍未驗證或刻意未測。 |
+| 套件 | 已驗證流程 | 未驗證或僅部分驗證的流程 |
+| :--- | :--- | :--- |
+| [X](sites/x/references/site-map.md) | 首頁 feed 變體、公開 profiles 與 tabs、搜尋 scopes、貼文／對話詳情、引用內容、媒體與可用貼文 analytics 唯讀檢視。 | 通知、私訊、歷史記錄、帳號設定、Grok、Premium、Creator Studio、Articles、Spaces、廣告、第三方登入與付款未探索。 |
+| [Threads](sites/threads/references/site-map.md) | 公開搜尋／topic／profile／post 與 reply sorting；登入後 activity filters、saved／following／ephemeral feeds、inbox／requests，以及 Insights dashboard／代表性 detail 唯讀檢視。 | 指定日期之前／自訂日期／指定 profile 搜尋篩選與 profile-to-author-search 路由未完整驗證；部分 Insights detail 與新訊息流程仍停在 loading skeleton。 |
+| [Facebook](sites/facebook/AGENTS.md) | 首頁與導覽選單、全站搜尋 scopes／filters、Games／Groups 入口，以及 Marketplace 搜尋、篩選與商品詳細頁唯讀檢視。 | 社團個人化動態、帳號設定實際變更、訊息、發文／互動、付款與 Marketplace 刊登流程未測試。 |
+| [vocus](sites/vocus/AGENTS.md) | 首頁／探索／搜尋／tag、文章／貼文／profile、公開沙龍與商品，以及 Studio 統計、內容、方案、會員、收益與設定唯讀檢視。 | 部分重型 feed／沙龍頁只有 DOM 或 partial 視覺證據；沙龍 room／商品詳情覆蓋為 partial，購買、會員變更、發布與 Studio 寫入操作刻意未執行。 |
+| [koding.school](sites/koding-school/references/exploration-checklist.md) | 課程搜尋／篩選／詳情與 lesson 類型；知識點／討論搜尋與 threads；作品、代表性 studio、profile、inbox 列表與帳號入口唯讀檢視。 | 專案編輯器、回收桶、工作室建立／移除、帳號更新、私訊本文、付款、訂單與訂閱仍未驗證。 |
+| [PokecaBook](sites/pokecabook/references/site-map.md) | 公開搜尋／分頁、賽事與內容分類、文章／詳細頁結構、牌組篩選、卡片採用率、Tier 與卡片清單頁。 | 未觀察到登入／帳戶分支；透過 X DM 詢問、reCAPTCHA、外部目的地與不可逆流程均未測試。 |
+| [Tabelog](sites/tabelog/references/site-map.md) | 餐廳搜尋、地區 autocomplete 與篩選、排序／分頁，以及餐廳詳情、菜單、照片、評論、評分、地圖與空位頁。 | 第三方認證、登入後導覽、收藏／已去過清單、評論編輯器、個人化推薦、會員排名、預約帳戶、實際訂位與付款仍未驗證或刻意未測。 |
 
-缺口完成驗證後，應先更新負責的網站套件，再於同一變更中刪除或縮小 README 的對應項目。暫時性網站故障與瀏覽器控制錯誤必須和真正的功能不存在分開記錄。
+證據狀態改變時，應先更新負責的網站套件，再於同一變更中同步更新兩個狀態欄。代表性驗證不等於完整覆蓋；暫時性網站故障與瀏覽器控制錯誤也必須和真正的功能不存在分開記錄。
 
 ## Skills 目錄
 
