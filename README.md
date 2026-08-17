@@ -19,16 +19,39 @@ Each skill in this repository is designed to be practical, maintainable, and cle
 | [`website-skill-builder`](skills/website-skill-builder) | Systematically explore a website in Codex's built-in browser and turn its stable structure, workflows, and data model into reusable agent guidance. |
 | [`tabelog-search`](skills/tabelog-search) | Search and filter public Tabelog listings in Codex's built-in browser, including autocomplete-based area selection and result verification. |
 | [`tabelog-restaurant`](skills/tabelog-restaurant) | Inspect Tabelog restaurant pages and related menus, photos, reviews, ratings, maps, and availability through the built-in browser. |
+| [`koding-school-learning`](skills/koding-school-learning) | Browse koding.school courses, enrolled-course filters, course details, and lesson page variants through the built-in browser. |
+| [`koding-school-community`](skills/koding-school-community) | Read koding.school knowledge points and safely search course discussions and replies. |
+| [`koding-school-projects`](skills/koding-school-projects) | Browse signed-in koding.school projects, studios, profile, inbox, and account entry points without mutating data. |
+| [`statementdog-stock-analysis`](skills/statementdog-stock-analysis) | Inspect Statement Dog company pages, health checks, financial metrics, valuation, ownership, products, topics, and related news. |
+| [`statementdog-screening`](skills/statementdog-screening) | Build and verify Statement Dog custom screens, strategy lists, metric rankings, sorting, pagination, and comparisons. |
+| [`statementdog-market`](skills/statementdog-market) | Explore Statement Dog market, industry, topic, news, blog, and industry-report views. |
+| [`statementdog-watchlist`](skills/statementdog-watchlist) | Read signed-in Statement Dog feeds, tracking portfolios, and account areas without mutating the account. |
+| [`x-home-feed`](skills/x-home-feed) | Read X home timelines, including For You, Following, and visible custom timelines, without publishing or interacting. |
+| [`x-profile`](skills/x-profile) | Inspect X profiles, public timeline tabs, profile metadata, and profile entry points. |
+| [`x-search`](skills/x-search) | Search X with autocomplete and verify popular, latest, people, media, and list results. |
+| [`x-post`](skills/x-post) | Inspect X posts, conversations, quoted content, media, and available post analytics. |
 
 ## Website-specific Guidance
 
 The [Tabelog site package](sites/tabelog/AGENTS.md) provides routing, session, freshness, and verification guidance for the Tabelog skills. Its [references](sites/tabelog/references) document the sitemap hierarchy, data model, and first-party explanations discovered during exploration.
 
+The [X site package](sites/x/AGENTS.md) provides shared routing, autocomplete, post/profile data-model, session, and safety guidance for the X skills. Its [references](sites/x/references) document verified page types and interaction rules.
+
+The [Statement Dog site package](sites/statementdog/AGENTS.md) provides shared routing, authentication, freshness, and verification guidance for the four Statement Dog skills. Its [references](sites/statementdog/references) document the site map, data model, form controls, and first-party explanations.
+
+The [橘蘋學習平台 site package](sites/koding-school/AGENTS.md) provides routing, public/authenticated session boundaries, freshness rules, and safe-operation guidance for the koding.school skills. Its skill references document the verified course, discussion, project, and studio page types.
+
 ## Usage
 
-Use `website-skill-builder` when a website should become a reusable tool for future agents. It explores the current tab in Codex's built-in browser, starts with the site's sitemap when available, covers public functionality first, and asks before exploring protected functionality that requires login.
+Use `website-skill-builder` when a website should become a reusable tool for future agents. It explores the current tab in Codex's built-in browser, starts with the site's sitemap when available, covers public functionality first, and proceeds into safe protected functionality when the current session is visibly authenticated; otherwise it asks before manual sign-in and protected exploration.
 
 For Tabelog tasks, use `tabelog-search` for listings and filters, and `tabelog-restaurant` for restaurant details and subpages. Future agents should compare live UI and documentation with these files and update stable, verified differences when the workspace is writable.
+
+For X tasks, route by intent to `x-home-feed`, `x-profile`, `x-search`, or `x-post`. Future agents should compare the live X UI with `sites/x/AGENTS.md` and keep search results, post content, metrics, and account data dynamic.
+
+For Statement Dog tasks, route by intent to `statementdog-stock-analysis`, `statementdog-screening`, `statementdog-market`, or `statementdog-watchlist`. Future agents should compare the live UI with `sites/statementdog/AGENTS.md` and keep financial values, rankings, articles, market data, and account data dynamic.
+
+For koding.school tasks, route course and lesson work to `koding-school-learning`, knowledge and discussion work to `koding-school-community`, and project/studio/account-entry work to `koding-school-projects`. Keep current progress, project records, messages, and other account data dynamic and private.
 
 ## Installation
 
@@ -46,4 +69,12 @@ npx skills add lloyd3126/chenchungnien-skills --skill tw-stock-data --global
 npx skills add lloyd3126/chenchungnien-skills --skill website-skill-builder --global
 npx skills add lloyd3126/chenchungnien-skills --skill tabelog-search --global
 npx skills add lloyd3126/chenchungnien-skills --skill tabelog-restaurant --global
+npx skills add lloyd3126/chenchungnien-skills --skill statementdog-stock-analysis --global
+npx skills add lloyd3126/chenchungnien-skills --skill statementdog-screening --global
+npx skills add lloyd3126/chenchungnien-skills --skill statementdog-market --global
+npx skills add lloyd3126/chenchungnien-skills --skill statementdog-watchlist --global
+npx skills add lloyd3126/chenchungnien-skills --skill x-home-feed --global
+npx skills add lloyd3126/chenchungnien-skills --skill x-profile --global
+npx skills add lloyd3126/chenchungnien-skills --skill x-search --global
+npx skills add lloyd3126/chenchungnien-skills --skill x-post --global
 ```

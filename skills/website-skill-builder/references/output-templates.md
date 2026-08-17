@@ -16,6 +16,7 @@ Use these as outlines, not boilerplate to copy blindly. Keep only facts confirme
 
 - [Visible sitemap or same-origin metadata route]: [what was available and how it was reached].
 - [Stable URL patterns or categories]: [discovered inventory, marked sitemap-unverified until UI-confirmed].
+- [Robots-derived route clues]: [User-agent, Allow/Disallow patterns, Sitemap lines, and candidate path families; keep separate from UI-verified features].
 - [Routes intentionally not followed]: [private, tokenized, dynamic, or excessive branches].
 
 ## Global routing
@@ -30,13 +31,16 @@ Use these as outlines, not boilerplate to copy blindly. Keep only facts confirme
 
 - Use the site UI and first-party definitions as the source of truth.
 - Use a sitemap as an inventory accelerator, not as evidence that a feature, permission, or workflow works; re-check sitemap-derived candidates through the UI.
-- Prefer a visible site-map link. If absent, only consider same-origin `/sitemap.xml` or `/robots.txt` through the Codex in-app browser; do not use web search, CLI fetching, APIs, or external browsers.
-- Explore public functionality first. After the public pass, ask whether the user wants protected functionality explored; only then ask them to sign in manually in the same Codex in-app browser tab and wait for confirmation.
+- Parse `robots.txt` as a second discovery signal: record Sitemap lines and Allow/Disallow path families as `robots—candidate` clues, but never treat them as a complete feature map or user-facing access decision.
+- Prefer a visible site-map or first-party inventory link, then check same-origin `/robots.txt` early because it often exposes Sitemap URLs but is not guaranteed to do so. If no Sitemap is found, consider only a small set of conventional same-origin candidates and first-party HTML sitemap/feed entries through the Codex in-app browser. If a compressed Sitemap downloads, inspect the downloaded artifact locally; do not use web search, CLI fetching, APIs, or external browsers.
+- Explore public functionality first. If the current visible session is already authenticated, proceed to safe protected functionality without a separate permission question. Otherwise, after the public pass, ask whether the user wants protected functionality explored; only then ask them to sign in manually in the same Codex in-app browser tab and wait for confirmation.
 - Treat the authenticated state as a separate site variant and re-check previously explored paths before documenting login-dependent behavior.
 - Re-test search bars, filters, dropdowns, and other form controls in both states; document differences in options, validation, query state, results, and reset behavior.
 - Re-fetch dynamic values; do not rely on values in these instructions.
 - Preserve session state and stop at irreversible confirmation boundaries.
 - When live UI differs from the documented procedure, use the current UI safely, record the exact verified mismatch, and update the owning site artifact when the change is stable and clear; never write dynamic values or speculative behavior.
+
+For Sitemap reporting, distinguish at least: `discovered`, `visually accessible`, `downloaded`, `locally parsed`, `UI-verified`, `client-blocked`, `blocked`, `unavailable`, `invalid`, and `no sitemap discovered`. `client-blocked` means the in-app browser control path did not expose content after the mandatory same-tab visual open and retry; it does not mean the resource itself was empty or nonexistent. Include an evidence source for each status: `current-tab visual`, `current-tab DOM/interaction`, `download UI plus local artifact`, `user-provided screenshot`, or `automation/control error`. Do not call a Sitemap successful merely because its URL appears in `robots.txt`, a tab opens, or the server returns HTTP 200; verify the actual content type and XML/text structure. Do not report “沒有可解析內容” solely because an automation call returned an empty body, `ERR_BLOCKED_BY_CLIENT`, or a timeout. Do not claim that the current tab was reopened when only a temporary tab or an error response was observed, and do not overwrite earlier successful evidence with a later control error.
 
 ## Skill selection
 

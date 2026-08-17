@@ -4,19 +4,39 @@ Use this as a working note during exploration. Keep exact labels from the site a
 
 ## Sitemap inventory
 
-| Source label / route | Type | Child sitemap or URL patterns | Stable categories discovered | Access status | Follow-up |
-| --- | --- | --- | --- | --- | --- |
-|  | visible site map / sitemap index / XML / robots metadata |  |  | available / partial / blocked / unavailable |  |
+| Source label / route | Type | Child sitemap or URL patterns | Stable categories discovered | Access status | Evidence source | Follow-up |
+| --- | --- | --- | --- | --- | --- | --- |
+|  | visible site map / sitemap index / XML / robots metadata |  |  | discovered / visually accessible / downloaded / locally parsed / UI-verified / client-blocked / blocked / unavailable / invalid / no sitemap discovered | current-tab visual / current-tab DOM / download UI + local artifact / user-provided screenshot / control error |  |
 
-Use the visible site-map link first. A same-origin `/sitemap.xml` or `/robots.txt` check is only a fallback and must be performed in the Codex in-app browser. Keep sitemap-derived routes marked `sitemap—unverified` until a corresponding UI or page is opened. Do not copy current URL inventories, tokenized URLs, or private branches into final skills.
+Check the current page for a visible site-map or first-party inventory, then check same-origin `/robots.txt` early because it often exposes Sitemap URLs. A Sitemap or robots entry is optional, not guaranteed. Track discovery, retrieval, parsing, and UI verification separately: a discovered URL is not proof that its contents can be fetched. Use only the user's already-visible active tab; do not create temporary tabs. If a compressed Sitemap downloads, confirm the browser download and inspect the local artifact before marking its XML as locally parsed. Keep all discovered routes marked `sitemap—unverified` until a corresponding UI or page is opened in that same tab. Do not copy current URL inventories, tokenized URLs, or private branches into final skills. Treat `ERR_BLOCKED_BY_CLIENT`, a timeout, or an empty automation body as inconclusive until the current tab has been visually checked and the visible link/navigation path retried; do not record “no parseable content” from that signal alone. Use `client-blocked` when the control path remains blocked after the visual retry, and reserve `invalid` for content that was actually retrieved and confirmed invalid. Preserve earlier successful visual/download evidence when a later retry fails.
 
 ## Coverage
 
 | Area / entry point | Visible label | Destination or state | Discovery source | Child areas found | Status | Next branch |
 | --- | --- | --- | --- | --- | --- | --- |
-|  |  |  | UI / sitemap—unverified / first-party docs |  | unexplored |  |
+|  |  |  | UI / sitemap—unverified / robots—candidate / first-party docs |  | unexplored |  |
 
 Status values: `explored`, `partial`, `protected—awaiting user choice`, `blocked`, `unsafe`, `not applicable`.
+
+## Robots-derived route clues
+
+| User-agent | Directive | Path or Sitemap URL | Candidate area / path family | Access status | Evidence source | UI verification / follow-up |
+| --- | --- | --- | --- | --- | --- | --- |
+|  | Allow / Disallow / Sitemap |  |  | discovered / client-blocked / blocked / unavailable | current-tab visual / user-provided screenshot / control error |  |
+
+Treat these as structural clues only. `Disallow` does not prove that a page is private, nonexistent, or inaccessible to a user; verify any safe candidate through the visible site UI. Do not copy a large current robots inventory into final skills.
+
+## Evidence integrity
+
+- [ ] The existing active tab was identified before navigation
+- [ ] Each target was actually opened in the active tab before interpreting its status
+- [ ] A screenshot was captured after the target navigation attempt, including when the API returned an error
+- [ ] A same-tab retry was performed when the target was not visible after an API error
+- [ ] No temporary tab, popup, or alternate browser was used
+- [ ] A screenshot was captured after each navigation error
+- [ ] User-provided screenshots are labeled as user-provided evidence
+- [ ] `client-blocked` was not converted into `invalid`, `unavailable`, or `no sitemap discovered`
+- [ ] Later control errors did not overwrite earlier successful visual/download evidence
 
 ## Page taxonomy
 
@@ -52,7 +72,7 @@ Include search bars, keyword fields, autocomplete, filter panels, dropdowns, mul
 
 ## Authenticated re-exploration
 
-Use this section after the user has explicitly approved protected exploration and manually signed in.
+Use this section whenever an authenticated session is visibly confirmed. If the user is already signed in, no separate protected-exploration question is required; manual sign-in remains user-only when authentication is not already present.
 
 | Previously explored area | Public state | Authenticated state | Difference | Rechecked / blocked | Evidence |
 | --- | --- | --- | --- | --- | --- |
@@ -69,9 +89,13 @@ Use this section after the user has explicitly approved protected exploration an
 ## Second-pass audit
 
 - [ ] Visible sitemap or site-map entry checked first
-- [ ] Same-origin standard sitemap/robots fallback considered only in the in-app browser
+- [ ] Same-origin `/robots.txt` checked early; absence recorded as a valid result
+- [ ] Same-origin standard sitemap candidates considered only in the in-app browser
+- [ ] Compressed Sitemap downloads checked and parsed when produced
 - [ ] Sitemap index/child maps sampled without exhaustive crawling
 - [ ] Sitemap-only candidates clearly separated from UI-verified features
+- [ ] Robots-derived route clues recorded separately from Sitemap retrieval status
+- [ ] `Disallow` and `Allow` rules not treated as user-facing permissions
 - [ ] Navbar reviewed again
 - [ ] Sidebar and collapsed menus reviewed again
 - [ ] Homepage and primary dashboard reviewed again

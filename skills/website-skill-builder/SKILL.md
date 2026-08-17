@@ -1,6 +1,6 @@
 ---
 name: website-skill-builder
-description: Systematically inventory and explore an accessible website through the Codex in-app browser, first attempting a same-site sitemap inventory and then validating public functionality before optionally exploring protected functionality after explicit user consent and manual sign-in. After login, re-explore previously covered areas because navigation, data, permissions, and controls may differ. Map its information architecture, safely test its interactions, understand its data model and workflows, and create maintainable AGENTS.md and agent skills for future operation. Use when a user asks to reverse-engineer a website for repeated AI-agent use specifically in the built-in browser, build website-specific operating guidance, or turn in-app browser exploration into reusable skills.
+description: Systematically inventory and explore an accessible website through the Codex in-app browser, first attempting a same-site sitemap inventory and then validating public functionality before exploring protected functionality when the current session is visibly authenticated or after explicit user consent and manual sign-in. After authentication, re-explore previously covered areas because navigation, data, permissions, and controls may differ. Map its information architecture, safely test its interactions, understand its data model and workflows, and create maintainable AGENTS.md and agent skills for future operation. Use when a user asks to reverse-engineer a website for repeated AI-agent use specifically in the built-in browser, build website-specific operating guidance, or turn in-app browser exploration into reusable skills.
 ---
 
 # Website Skill Builder
@@ -22,22 +22,59 @@ Do not optimize for one immediate question. First understand the website itself;
 
 Follow the `browser:control-in-app-browser` skill for in-app browser setup, tab handling, interaction, and evidence capture. Use the currently visible site state as the source of truth; URLs and page text alone are not enough to establish that an interaction works. Never inspect cookies, local storage, profiles, passwords, or session stores.
 
-Authentication is a staged gate: do not substitute another browser or source, and do not continue into protected areas on assumptions. Finish the public exploration and its second-pass audit first. Then ask the user whether they want protected functionality explored. Only if the user agrees, ask them to sign in manually in the same Codex in-app browser tab and wait for confirmation; after confirmation, re-check the visible page state and resume from the recorded protected branch. If the user declines, report those branches as not explored.
+### Active-tab invariant and evidence provenance
+
+- Bind to exactly the already-visible active Codex in-app browser tab supplied by the user. Do not create, open, or switch to a temporary tab, popup, window, browser session, or alternate browser for discovery. Do not treat a tab created by a helper or `open` call as the user's current tab.
+- Capture the current tab visually before the first navigation, after each navigation, and after every navigation error. All retries must target that same tab. If an attempted navigation reports an error but the tab remains on the previous page, the previous page's screenshot is the only evidence about what is currently visible.
+- Track the evidence source for every important claim: `current-tab visual`, `current-tab DOM/interaction`, `browser download UI plus local artifact`, `user-provided screenshot`, or `automation/control error`. A control error is evidence only that that attempt failed; it is never evidence about the target response body.
+- A user-provided screenshot can establish what the user saw at that time, but it does not prove that the current tab was reopened. Report it as user-provided evidence and do not write “我已在目前分頁重新確認” unless a new screenshot of the same current tab confirms it.
+- Require current-tab visual evidence before marking a resource or route `visually accessible` or `UI-verified`. DOM text from a temporary tab, a successful `goto`, HTTP metadata, or a tool error cannot substitute for that evidence.
+- Never overwrite or downgrade earlier visual/download/parse evidence merely because a later attempt gets `ERR_BLOCKED_BY_CLIENT`, timeout, or an empty automation result. Append the later attempt as `client-blocked` with its evidence source and keep the earlier result intact.
+
+### Mandatory open-then-inspect protocol
+
+For every target route, resource, representative Sitemap URL, or page that the user asks to inspect:
+
+1. Record the current URL and visually inspect the existing active tab.
+2. Actually navigate/open the target in that same built-in-browser tab. A navigation API call is only an attempt; it is not proof that the target was opened.
+3. Immediately capture a screenshot of that same tab, regardless of whether the navigation API reports success, timeout, `ERR_BLOCKED_BY_CLIENT`, or another error.
+4. If the screenshot still shows the previous page, a blank state, or an error state, perform one more same-tab normal browser navigation: follow the visible first-party link when available; otherwise retry the target navigation in the same tab. Capture another screenshot after the retry.
+5. Only then classify the result as visually accessible, invalid, unavailable, or client-blocked. If the target never appears in a screenshot of the active tab, say “本輪未在目前分頁視覺打開成功” and do not say that the target had no content.
+
+Never stop at step 2 because a navigation API returned `ERR_BLOCKED_BY_CLIENT`. The required next action is step 3 visual inspection, followed by step 4 retry when the target is not visible.
+
+Authentication is conditional: do not substitute another browser or source, and do not continue into protected areas on assumptions. If the current visible page clearly confirms an authenticated session, no separate permission question is required; treat it as an authenticated site variant and proceed with safe protected exploration after the public pass. If authentication is not visible, finish the public exploration and its second-pass audit first, then ask whether the user wants protected functionality explored. Only if the user agrees should you ask them to sign in manually in the same Codex in-app browser tab and wait for confirmation. If the user declines, report those branches as not explored.
 
 ## Required workflow
 
-### 1. Try a sitemap-first inventory
+### 1. Discover sitemap and alternate inventories
 
-Before broad navigation, attempt to obtain the website's own sitemap or site-map index through the Codex in-app browser.
+Before broad navigation, look for the site's own sitemap or another first-party URL inventory through the Codex in-app browser. A sitemap is common but optional; absence is a valid outcome.
 
-1. Inspect the current page for a visible `Sitemap`, `Site map`, `サイトマップ`, footer link, help entry, or equivalent. Prefer opening the exact same-site link exposed by the UI.
-2. If no visible sitemap exists, optionally try a conventional same-origin metadata route such as `/sitemap.xml` or `/robots.txt` in the in-app browser only. Do not use web search, `curl`, a CLI, an API, or an external browser. If the route is unavailable or blocked, record that and continue with UI exploration.
-3. Record the sitemap source, whether it is an index or URL list, child sitemap names, URL patterns, labels or categories, language variants, and any apparent private or dynamic branches. For a large sitemap, inspect the index and representative child entries; do not open every URL.
-4. Treat sitemap entries as discovery candidates, not proof that a feature exists, is public, is current, or behaves as the URL suggests. Mark their source as `sitemap—unverified` until the corresponding UI or page is opened and confirmed.
-5. Add sitemap-derived candidates to the coverage checklist before following the site's navbar, sidebar, homepage, footer, account menus, search, and settings. Deduplicate URL patterns and group them into page types so the sitemap accelerates coverage without turning exploration into exhaustive crawling.
-6. Return to the current visible page and continue with the UI. The sitemap is an inventory aid; actual labels, controls, transitions, permissions, and results must still be verified through the site interface.
+1. Visually inspect the current page for a `Sitemap`, `Site map`, `サイトマップ`, footer link, help entry, documentation link, RSS/Atom feed, or equivalent. Prefer an exact same-site link exposed by the UI.
+2. Check the same-origin `/robots.txt` early. It often contains one or more `Sitemap:` lines, but it may contain none. Also record `User-agent`, `Allow`, and `Disallow` patterns as `robots—candidate` route clues, grouped by path family. These clues can suggest account, content, admin, search, or other areas, but they are not a feature map or an access-control result.
+3. For every Sitemap URL exposed by the visible page or `robots.txt`, use the mandatory open-then-inspect protocol in the same already-visible in-app browser tab; do not open a temporary tab. If XML renders, inspect its root type and sample entries. If a compressed file such as `.xml.gz` downloads instead of rendering, confirm the download completed in that same browser session, inspect the downloaded artifact through the available local-file path, decompress it, and sample the XML. Do not fetch a replacement with `curl`, a CLI, an API, or an external browser unless the user explicitly changes the operating boundary.
+   - Treat `ERR_BLOCKED_BY_CLIENT`, `client block`, a `goto` timeout, an empty automation response, or a parser that receives no body as an inconclusive browser-control result—not as proof that the resource is empty, unavailable, or unparsable. First visually inspect the current in-app tab, then retry through the exact visible Sitemap/robots link or the browser's normal address/navigation flow. If the tab visibly renders text/XML or shows a completed download, trust that visual evidence and continue with the appropriate inspection or local parsing step even when an automation read is empty.
+   - Only classify a resource as `invalid` after content was visibly or otherwise reliably retrieved and confirmed to be empty, HTML, malformed, or not the expected Sitemap format. If the browser still cannot expose the resource after the visual retry, use `client-blocked` and state that the browser control path did not provide content; never report “沒有可解析內容” as if the resource itself had been proven empty. Keep the Sitemap or robots entry as discovered evidence and continue normal UI exploration.
+4. If no Sitemap was found, consider only a small set of conventional same-origin candidates such as `/sitemap.xml`, `/sitemap_index.xml`, and `/sitemap.xml.gz`, plus any first-party HTML sitemap, help, documentation, or feed entry discovered through the UI. Do not guess or crawl an exhaustive list of paths.
+5. Record the discovery source, whether it is an index, compressed XML, URL list, feed, or HTML page, child sitemap names, stable URL patterns, labels or categories, language variants, and apparent private or dynamic branches. For a large inventory, inspect the index and representative entries; do not open every URL or copy the full URL list into the repository.
+6. Treat every discovered route as a candidate, not proof that a feature exists, is public, is current, or behaves as the URL suggests. Mark it `sitemap—unverified` until the corresponding UI or page is opened and confirmed. A Sitemap URL itself must receive a separate retrieval status; finding the URL is not the same as retrieving its contents.
+7. Add Sitemap candidates and robots-derived route clues to the coverage checklist, deduplicate route patterns, group them into page types, and return to the current visible page. The inventory accelerates discovery; actual labels, controls, transitions, permissions, and results must still be verified through the site UI.
 
-Do not treat `robots.txt` as a feature map, do not follow private or tokenized URLs, and do not store current sitemap contents or large URL lists in generated skills. Preserve only stable route patterns and the retrieval path.
+Use these Sitemap retrieval statuses in the checklist and completion report:
+
+- `discovered`: listed in visible UI, `robots.txt`, documentation, or another first-party inventory; contents not retrieved.
+- `visually accessible`: XML or an inventory page rendered in the user's current in-app browser tab and confirmed visually.
+- `downloaded`: the browser completed a download, but the artifact has not been parsed.
+- `locally parsed`: a downloaded artifact was decompressed or read and its XML/text structure validated.
+- `UI-verified`: representative URLs were reopened in the user's current in-app browser tab and confirmed visually through the website UI.
+- `client-blocked`: the in-app browser control path reported a client block, timeout, or empty automation result and visual retry did not expose the resource; this does not establish that the resource itself is empty or nonexistent.
+- `blocked`: visual evidence, a permission boundary, or a server response prevented retrieval, such as HTTP 403. Record whether the block came from the browser client, the site/server, login, or an explicit safety boundary.
+- `unavailable`: visible navigation showed a missing route or network failure without evidence of a policy block; do not use this for an automation-only timeout before visual retry.
+- `invalid`: content was actually retrieved and confirmed to be empty, HTML, malformed, or otherwise not the expected Sitemap format.
+- `no sitemap discovered`: the explored first-party inventory paths contained no Sitemap entry, and that is a valid outcome.
+
+Do not follow private, tokenized, or unsafe URLs merely because an inventory lists them. Do not treat HTTP 200, a browser tab, a `Disallow` rule, or a robots entry alone as proof that a page or Sitemap is available. `Disallow` is crawler guidance, not a user-facing permission result. If retrieval is blocked, record the evidence and the layer that blocked it, do not attempt policy workarounds, and continue with normal UI exploration. A browser-control error is not a substitute for visual inspection: never turn an empty tool result into a claim that the page had no parseable content, and never claim that the current tab was reopened when the error came from a temporary or unbound tab.
 
 ### 2. Establish a coverage map
 
@@ -120,11 +157,11 @@ Return to the navbar, sidebar, homepage, footer, main dashboard, and each major 
 
 Continue exploring until the remaining gaps are explicitly blocked, unsafe to test, unavailable to the current session, or genuinely out of scope.
 
-At the end of this public pass, ask whether the user wants the recorded protected areas explored. Do not ask at the first login wall. If the user agrees, pause for manual sign-in in the same in-app browser tab, then explore only the protected branches that are now available. If the user declines, keep them documented as protected and unconfirmed.
+At the end of this public pass, ask whether the user wants the recorded protected areas explored only when the current visible session is not already authenticated. Do not ask at the first login wall. If an authenticated session is already visible, continue into safe protected branches without a separate permission prompt. Otherwise, if the user agrees, pause for manual sign-in in the same in-app browser tab, then explore only the protected branches that are now available. If the user declines, keep them documented as protected and unconfirmed.
 
-### 10. Re-explore after login (conditional)
+### 10. Re-explore in the authenticated variant (conditional)
 
-Treat the authenticated site as a separate site variant, not as a simple continuation. After the user signs in and confirms, revisit every top-level entry point, page type, workflow, and major safe interaction recorded during the public pass—even when it appeared fully understood before login.
+Treat the authenticated site as a separate site variant, not as a simple continuation. When the current visible session is authenticated—whether it was already active or the user just signed in—revisit every top-level entry point, page type, workflow, and major safe interaction recorded during the public pass—even when it appeared fully understood before authentication.
 
 Compare and record the authenticated state for:
 
@@ -202,5 +239,7 @@ Finish with a concise report covering:
 3. important references and routing decisions
 4. unconfirmed, inaccessible, or intentionally untested areas
 5. agent usability test scenarios and outcomes
+
+For Sitemap and route claims, include the evidence source. Use `current-tab visual` only when the user's existing tab was visibly inspected; use `user-provided screenshot` for screenshots supplied by the user; use `browser download UI plus local artifact` for downloaded and parsed files; and report `automation/control error` separately. Never describe a control error as proof that the target had no content.
 
 Use the templates in [references/output-templates.md](references/output-templates.md) when they improve consistency.
