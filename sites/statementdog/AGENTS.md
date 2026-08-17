@@ -9,6 +9,7 @@
 - 想查看單一公司、財務指標、亮點／風險、健診或歷史圖表 → `$statementdog-stock-analysis`。
 - 想依條件找股票、查看績優／轉機清單、指標排行榜或比較公司 → `$statementdog-screening`。
 - 想查看大盤、產業、題材、新聞、網誌或產業報告 → `$statementdog-market`。
+- 想把產業報告轉成候選標的、依序篩選並逐檔查核 → `$statementdog-stock-research`。
 - 想查看登入後的追蹤動態、追蹤股組合或帳號區域 → `$statementdog-watchlist`。
 
 ## Navigation
