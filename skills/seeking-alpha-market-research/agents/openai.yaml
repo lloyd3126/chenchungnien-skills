@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seeking Alpha Market Research"
+  short_description: "Read current market news, analysis, and earnings"
+  default_prompt: "Use $seeking-alpha-market-research to research current Seeking Alpha news, analysis, or earnings."

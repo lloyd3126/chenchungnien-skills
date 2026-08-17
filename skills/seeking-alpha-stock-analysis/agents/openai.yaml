@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seeking Alpha Stock Analysis"
+  short_description: "Analyze individual stocks and symbol pages"
+  default_prompt: "Use $seeking-alpha-stock-analysis for a current Seeking Alpha ticker or company analysis."

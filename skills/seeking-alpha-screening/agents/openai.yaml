@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seeking Alpha Screening"
+  short_description: "Find, filter, and compare stocks or ETFs"
+  default_prompt: "Use $seeking-alpha-screening to screen or compare stocks and ETFs in Seeking Alpha."
