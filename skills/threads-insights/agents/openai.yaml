@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threads Insights"
+  short_description: "Inspect authenticated Threads analytics and time ranges"
+  default_prompt: "Inspect Threads insights for a selected time range"

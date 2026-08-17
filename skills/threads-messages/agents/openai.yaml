@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threads Messages"
+  short_description: "Inspect Threads Direct messages without sending"
+  default_prompt: "Inspect Threads inbox or message requests read-only"

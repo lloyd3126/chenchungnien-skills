@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threads Activity"
+  short_description: "Read authenticated Threads activity and personal feeds"
+  default_prompt: "Read Threads activity, following, saved, or ephemeral posts"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threads Search"
+  short_description: "Search and filter public Threads results"
+  default_prompt: "Search public Threads posts, topics, trends, or profiles"

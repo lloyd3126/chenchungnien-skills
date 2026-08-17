@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threads Profile"
+  short_description: "Inspect public Threads profiles and tabs"
+  default_prompt: "Inspect a public Threads profile and its posts"

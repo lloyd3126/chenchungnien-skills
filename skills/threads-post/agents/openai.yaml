@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threads Post"
+  short_description: "Inspect a public Threads post, media, and replies"
+  default_prompt: "Inspect a public Threads post and its replies"
