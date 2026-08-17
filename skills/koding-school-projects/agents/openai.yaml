@@ -1,0 +1,4 @@
+interface:
+  display_name: "作品與工作室導覽"
+  short_description: "瀏覽我的作品、工作室、個人履歷與建立／修改安全邊界"
+  default_prompt: "Use $koding-school-projects to 瀏覽我的作品、工作室、個人履歷與建立／修改安全邊界 through the Codex in-app browser."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "課程與 lesson 導覽"
+  short_description: "搜尋我的課程、篩選課程、查看課程詳情與 lesson 型態"
+  default_prompt: "Use $koding-school-learning to 搜尋我的課程、篩選課程、查看課程詳情與 lesson 型態 through the Codex in-app browser."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "知識點與討論區"
+  short_description: "閱讀知識點、搜尋課程討論與安全檢視主題回覆"
+  default_prompt: "Use $koding-school-community to 閱讀知識點、搜尋課程討論與安全檢視主題回覆 through the Codex in-app browser."
