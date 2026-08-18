@@ -46,6 +46,7 @@ Run these as read-only behavioral checks after a material workflow change. Use t
 | Method versus conclusion | User asks for recommendations, not an audit trail | The final answer keeps research method details in the internal ledger and mentions them only when they materially affect the recommendation or the user asks how the research was done. |
 | Score versus specialist trade-off | A lower-score candidate has materially stronger seasonal recurrence or item-level takeaway evidence | The answer keeps one score-first ranking and gives the specialist candidate as a concise labelled swap with its trade-off, not as a second full ranking. |
 | Delivery punctuation | User-facing answer is in Traditional Chinese plain text | Prose uses commas and full stops. It contains no semicolons or em dashes, and links remain naturally embedded in sentences. |
+| Name normalization gate | Tabelog returns a formal Japanese shop or product name | The agent records `name_original`, creates `name_zh` and `name_display`, uses a Chinese name or Taiwan-familiar transliteration as the primary label, and keeps Japanese only in parentheses, source links, or required search terms. |
 | Store naming and links | Tabelog uses a formal Japanese store name | The answer uses a Taiwan-familiar Chinese name or transliteration and embeds the Tabelog or official link in the relevant sentence. |
 | Traditional Chinese delivery | The source contains Japanese store, product, and hours text | The answer translates the user-facing prose into Traditional Chinese and retains original-language text only for search, disambiguation, or the linked source. |
 
@@ -69,6 +70,7 @@ Run these as read-only behavioral checks after a material workflow change. Use t
 - The output separates raw score rank from qualified rank and explains any excluded raw-score leader.
 - The output separates store-level service flags from item-level access, especially when the store has `テイクアウト` but the requested item is not independently confirmed as takeaway.
 - The output reports takeout evidence level, last-checked freshness, and confidence when these change the recommendation.
+- Every returned shop and product has `name_original`, `name_zh`, and `name_display`; a raw Japanese name is never the primary user-facing label.
 - The answer opens with a practical conclusion and decision-relevant caveat rather than a description of the research workflow.
 - Search keywords, sort controls, page counts, browser actions, and internal coverage details remain out of the default answer unless the user asks for an audit trail.
 - When score-first and specialist lenses disagree, the answer presents one default ranking and one concise trade-off or swap, not two full rankings.

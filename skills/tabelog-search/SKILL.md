@@ -40,8 +40,18 @@ If the user already has a restaurant or detail URL and wants its fields or subpa
 - Treat a result-card or filter-level `テイクアウト` label as discovery evidence only. For a takeout request, verify the requested item's access separately from the store's generic service flag.
 - Classify takeout evidence as `已確認可外帶` when a current menu, official source, or exact recent purchase confirms the item can be taken away; `近期外帶紀錄` when a recent review records an actual purchase but the current menu is silent; `僅店家標示外帶` when only the store-level flag is visible; or `外帶未確認` when no useful item-level evidence is available. Only the first two are positive item-level evidence.
 - For a future month or date, inspect current opening hours, weekly schedule, facility or department-store holidays, temporary-closure notices, and official seasonal announcements when available. Report a likely schedule as a prediction, never as a guaranteed opening or stock state.
-- Maintain a small candidate record with the live score, review count, nearest station, observed distance, raw rank, qualified rank, `last_checked_at`, takeout evidence, freshness, confidence, and one concrete caveat. Keep live values in the task ledger, not in this skill.
-- User-facing output is Traditional Chinese by default. Translate shop and product names into Traditional Chinese or a Taiwan-familiar transliteration, using the Tabelog or official link for the formal original name. Keep original-language text only when it is needed for search or disambiguation.
+- Maintain a small candidate record with the live score, review count, nearest station, observed distance, raw rank, qualified rank, `last_checked_at`, takeout evidence, freshness, confidence, one concrete caveat, and `name_original`, `name_zh`, and `name_display`. Keep live values in the task ledger, not in this skill.
+- User-facing output is Traditional Chinese by default. Apply [name-normalization.md](../../sites/tabelog/references/name-normalization.md) before ranking or writing the answer. A raw Japanese shop or product name must never be the primary display name. Use `中文名稱（原文名稱）` when the original is needed for search or disambiguation.
+
+## Name normalization and final language gate
+
+Treat language normalization as a hard output requirement, not a style preference:
+
+1. Capture the exact visible Tabelog name as `name_original`.
+2. Create `name_zh` using a reliable Traditional Chinese name, Taiwan-familiar transliteration, or a brand name plus translated category/branch.
+3. Set `name_display` before the candidate is ranked or returned.
+4. Before final output, confirm that every shop and product has a Chinese display name, that raw Japanese appears only in parentheses, source links, or required search terms, and that the prose is Traditional Chinese.
+5. If a name cannot be translated reliably, keep the recognizable brand and translate only the parts that are certain. Never copy the entire Japanese name as the user-facing label.
 
 ## Form and result verification
 
@@ -72,3 +82,4 @@ Before using this procedure, compare the live search form and result page with t
 - [site-map.md](../../sites/tabelog/references/site-map.md) — explored public routes and verified interactions.
 - [data-model.md](../../sites/tabelog/references/data-model.md) — result and restaurant entity relationships.
 - [form-controls.md](references/form-controls.md) — search fields, filter names, duplicate-control handling, and evidence pattern.
+- [name-normalization.md](../../sites/tabelog/references/name-normalization.md) — Chinese display names, original-name handling, and final language gate.

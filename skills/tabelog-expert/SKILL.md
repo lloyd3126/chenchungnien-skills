@@ -190,7 +190,9 @@ For a future or seasonal request, state the practical conclusion in plain langua
 
 Preserve the user's requested result count. If the user asks for Top 5, return five qualified paragraphs when five pass the gates; do not silently collapse the answer to Top 3. For a short request, report only the requested ranking and the one or two caveats that change the decision. The full scenario map remains internal unless a lens materially changes the recommendation.
 
-User-facing output must be first-person Traditional Chinese plain-text paragraphs. Use Traditional Chinese or a Taiwan-familiar transliteration for store names so the shop remains identifiable. Let the Tabelog link carry the formal Japanese name. Embed Tabelog, official-site, and SNS links naturally inside the relevant sentence. Do not use Markdown headings, bullets, numbered lists, tables, bold, or a separate link appendix. Use Chinese commas and full stops for prose. Do not use semicolons or em dashes in the user-facing answer.
+User-facing output must be first-person Traditional Chinese plain-text paragraphs. Apply [name-normalization.md](../../sites/tabelog/references/name-normalization.md) as a hard output gate. Use a Traditional Chinese or Taiwan-familiar transliteration as the primary shop and product name, and use `中文名稱（原文名稱）` only when the original helps identification. A raw Japanese name must never be the primary display label. Let the Tabelog link carry the formal Japanese name. Embed Tabelog, official-site, and SNS links naturally inside the relevant sentence. Do not use Markdown headings, bullets, numbered lists, tables, bold, or a separate link appendix. Use Chinese commas and full stops for prose. Do not use semicolons or em dashes in the user-facing answer.
+
+Before returning, run the final language QA: every shop and product has `name_zh` or a Taiwan-familiar transliteration, no raw Japanese name appears outside parentheses, source links, or required search terms, and the surrounding prose is Traditional Chinese. If any candidate fails, normalize it before ranking or return. Do not use the source language as a reason to skip this gate.
 
 Present the default score-first Top N as plain paragraphs beginning with labels such as `第一名是` or `我會先選`. If a specialist or more practical candidate would replace a score-first candidate, explain the trade-off in one short paragraph rather than creating a second ranking. Keep near-misses brief and give each one primary exclusion reason.
 
@@ -240,3 +242,4 @@ For each Top N recommendation, make the qualification decision auditable in pros
 - [Tabelog Search](../tabelog-search/SKILL.md) — area autocomplete, keyword search, filters, and result verification.
 - [Tabelog Restaurant](../tabelog-restaurant/SKILL.md) — current detail, menu, review, photo, rating, map, and availability fields.
 - [First-party guidance](../../sites/tabelog/references/first-party-guidance.md) — the meaning and limits of Tabelog reviews and scores.
+- [Name normalization](../../sites/tabelog/references/name-normalization.md) — Chinese display names, original-name handling, and final language gate.

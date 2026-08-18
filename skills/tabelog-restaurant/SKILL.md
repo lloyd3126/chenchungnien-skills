@@ -26,13 +26,14 @@ Start at the restaurant URL and re-read the current DOM. Do not rely on a cached
    - `地図`: address, transport, map, Google Maps region, and nearby restaurants.
 5. For a current availability request, set only the requested date, party size, and time in the visible reservation widget, inspect the available state, and stop before `予約する` unless the user separately confirms that action. Availability is dynamic and may lead outside Tabelog.
 6. For a future month or date, compare the current weekly schedule with facility or department-store holidays, temporary notices, and official seasonal information when exposed. Mark the result as `指定日期已確認`, `正常營業日推定`, `設施營業日依存`, or `指定日期未確認`; do not convert a regular schedule into a guarantee.
-7. Verify every reported value against the current page and record `last_checked_at`. For reviews and photos, include the page's date/ordering context and warn that historical content may not reflect the current restaurant. Use Traditional Chinese or a Taiwan-familiar transliteration for the user-facing name and product description, keeping the formal original in the Tabelog or official link.
+7. Verify every reported value against the current page and record `last_checked_at`. For reviews and photos, include the page's date/ordering context and warn that historical content may not reflect the current restaurant. Apply [name-normalization.md](../../sites/tabelog/references/name-normalization.md): record `name_original`, `name_zh`, and `name_display`, and do not return a raw Japanese shop or product name as the primary user-facing label.
 
 ## Evidence and output contract
 
 - For each material claim, retain the source surface and URL, observation date, evidence freshness, confidence (`高`, `中`, or `低`), and one unresolved caveat.
 - A current menu or official page establishes a current listing, not same-day stock. A recent review establishes an actual historical purchase, not today's availability. State both when they differ.
 - Keep service dimensions independent: `外帶`, `內用`, and `預約` are separate fields. Never infer item-level takeaway from a reservation or vacancy control.
+- Treat name normalization as a hard gate. Before returning any shop or product, confirm that it has a Traditional Chinese display name or Taiwan-familiar transliteration, with the formal original kept only in parentheses or the source link.
 - If the user requests multiple restaurants, preserve the requested `Top N`; do not silently reduce it to Top 3. Return fewer only when fewer candidates pass the stated evidence gates, and explain the missing candidates.
 
 ## Page and field semantics
@@ -66,3 +67,4 @@ Before using this procedure, compare the live restaurant page and subpage tabs w
 - [page-types.md](references/page-types.md) — detailed public subpage routing and fields.
 - [data-model.md](../../sites/tabelog/references/data-model.md) — Restaurant, Review, Menu, Photo, Rating, and availability relationships.
 - [first-party-guidance.md](../../sites/tabelog/references/first-party-guidance.md) — Tabelog's own review and rating definitions.
+- [name-normalization.md](../../sites/tabelog/references/name-normalization.md) — Chinese display names, original-name handling, and final language gate.

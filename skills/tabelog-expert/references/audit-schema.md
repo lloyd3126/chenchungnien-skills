@@ -22,7 +22,7 @@ Use this ledger internally while browsing. Keep live values in the task output, 
 
 | Field | Allowed values or guidance |
 |---|---|
-| Identity | Name, branch, detail URL, live score, review count |
+| Identity | `name_original`, `name_zh`, `name_display`, branch, detail URL, live score, review count |
 | Storefront | Physical address, observed distance from requested station, nearest station, facility/branch context, storefront yes/no/unclear |
 | Transport | If no origin: nearest station and approximate walk time derived from observed distance, labelled approximate. If origin is provided: route source and observation date, total transit time, line(s), transfer count, station exit/final walk, and route verified/unverified. Never infer a route duration or transfer count. |
 | Opening | Weekly hours, holidays, facility dependency, one of the four opening statuses |
@@ -54,7 +54,7 @@ Keep these checks separate from the research ledger. They control how the eviden
 | Decision lenses | State the applicable trade-offs as recommendations. Do not render the internal scenario map as a process explanation or create a second full ranking |
 | Future-month wording | Say whether the month is confirmed, supported by prior-year seasonality, conditional, or not confirmed. Never turn `今年未公告` into a current-year promise |
 | Result count | Match the requested Top N. Return fewer only when fewer candidates pass the evidence gates, and explain the shortfall |
-| Store naming | Use Traditional Chinese or a Taiwan-familiar transliteration. Let the Tabelog link carry the formal Japanese name |
+| Store naming | Use `name_display` with a Traditional Chinese name or Taiwan-familiar transliteration. Let the Tabelog link carry the formal Japanese name; never use the raw Japanese name as the primary label |
 | Link placement | Embed Tabelog, official-site, and SNS links in the sentence that uses the source. Do not add a separate link appendix |
 | Format | First-person Traditional Chinese plain-text paragraphs. No Markdown headings, bullets, numbered lists, tables, bold, semicolons, or em dashes |
 | Transport prose | Use nearest-station walking time without an origin. With an origin, use verified total time, lines, transfer count, station exit, and final walk |
