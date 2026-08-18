@@ -56,7 +56,7 @@ Keep these checks separate from the research ledger. They control how the eviden
 | Result count | Match the requested Top N. Return fewer only when fewer candidates pass the evidence gates, and explain the shortfall |
 | Store naming | Use `name_display` with a Traditional Chinese name or Taiwan-familiar transliteration. Let the Tabelog link carry the formal Japanese name; never use the raw Japanese name as the primary label |
 | Link placement | Embed Tabelog, official-site, and SNS links in the sentence that uses the source. Do not add a separate link appendix |
-| Format | One connected first-person Traditional Chinese tourism-ambassador article. No Markdown headings, bullets, numbered lists, tables, bold, italics, semicolons, em dashes, or separate link appendix |
+| Format | One connected first-person Traditional Chinese tourism-ambassador article opened by a brief greeting. No Markdown headings, bullets, numbered lists, tables, bold, italics, semicolons, em dashes, or separate link appendix |
 | Transport prose | Use nearest-station walking time without an origin. With an origin, use verified total time, lines, transfer count, station exit, and final walk |
 | Caveat density | Give each candidate one primary caveat. Keep raw metres, unverified routes, internal labels, and method details out of the main prose unless they change the decision |
 

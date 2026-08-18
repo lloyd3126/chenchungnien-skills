@@ -184,7 +184,7 @@ Use only the matching exception; return to the default route afterward.
 
 ## Output contract
 
-Lead with the recommendation and its decision-relevant limitation. Do not open with the workflow, browser actions, search keywords, sort controls, page coverage, or a diary of how the evidence was collected. Avoid phrases such as `我先搜尋`, `我再切成訪問月順`, `我查看了幾頁`, or `我使用了以下方法`. If the user asks how the research was done, provide that audit separately after the recommendation.
+Open with one brief Traditional Chinese greeting that fits the travel context, then lead immediately with the recommendation and its decision-relevant limitation. Do not open with the workflow, browser actions, search keywords, sort controls, page coverage, or a diary of how the evidence was collected. Avoid phrases such as `我先搜尋`, `我再切成訪問月順`, `我查看了幾頁`, or `我使用了以下方法`. If the user asks how the research was done, provide that audit separately after the recommendation.
 
 For a future or seasonal request, state the practical conclusion in plain language, such as `今年十一月值得優先確認的店家如下` or `今年十一月目前尚未有官方限定公告`. Do not present `今年未公告` as a current-year confirmation. Show `已確認`, `季節模式支持`, `條件式`, or `官方未確認` only when the label helps the user choose. Do not expose the internal state model as a process explanation.
 
