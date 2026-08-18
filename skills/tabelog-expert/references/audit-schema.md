@@ -10,7 +10,8 @@ Use this ledger internally while browsing. Keep live values in the task output, 
 | Scope | Exact area/station, visible autocomplete choice, and result URL |
 | Target | User wording, normalized Tabelog keyword, synonyms, and false positives |
 | Origin / route | User-provided origin, or `未指定`; whether the output should use a nearest-station walk estimate or an origin-to-store transit route |
-| Intended opening | Month/date, weekday if known, and reservation controls ignored or used |
+| Intended opening | Month/date, weekday if known, calendar dates checked, and reservation controls ignored or used |
+| Requested count | User-requested Top N, or default `3` when no count is given |
 | Review window | Start/end dates and whether month-only dates limit precision |
 | Decision state | Current route stage: request contract, inventory, hard-gate screen, evidence audit, official cross-check, state classification, or ranking |
 | Format scope | Whether the request requires standalone retail/takeout, allows café/course formats, or leaves access open |
@@ -28,14 +29,16 @@ Use this ledger internally while browsing. Keep live values in the task output, 
 | Product match | Exact, variant/seasonal, analog/like, wish-only, branch mismatch, unclear |
 | Product format | Retail/takeout, café, course, hotel lounge, buffet, pop-up, wish-only |
 | Product access | `standalone takeout`, `single-item dine-in`, `course dessert`, `bar/lounge dessert`, `seasonal pop-up`, `store takeout flag only`, `wish-only`, or `unclear`. A store-level takeout flag is not item-level takeaway proof. |
+| Takeout evidence | `已確認可外帶`, `近期外帶紀錄`, `僅店家標示外帶`, or `外帶未確認`; only the first two are positive item-level evidence |
 | Current evidence | Current text listed; current photo only; current menu not listed; unconfirmed |
 | Official evidence | Official website or official SNS linked from Tabelog; exact item/variant, sale window, branch, format, hours/holiday or stock rule; source type, URL, observation date, status (`官方目前列出`, `官方近期公告`, `固定季節／販售期`, `歷年同期模式（今年未公告）`, `官方未確認`, `官方與 Tabelog 衝突`), and consistency with Tabelog. Prior-year recurrence is never current-year confirmation. |
 | Review evidence | Newest visit month, detail-page visit month/date when exposed, publication date or `未取得`, exact item/price/context; preserve mismatches rather than collapsing dates |
 | Service | Takeout, dine-in, reservation recorded independently |
 | Freshness | Strong/current, Recent, Historical, Weak/non-qualifying |
 | Confidence | High/medium/low plus the reason and unresolved caveat |
+| Last checked | Observation date/time for live score, hours, menu, official source, or availability fields used in the decision |
 | Qualification | Qualified / near-miss / excluded, with the first failed gate or unresolved uncertainty |
-| Ranking boundary | Raw score rank, qualified rank, Top 3 candidate, boundary candidate, equal-score tie, or higher-scoring near-miss |
+| Ranking boundary | Raw score rank, qualified rank, Top N candidate, boundary candidate, equal-score tie, or higher-scoring near-miss |
 | Product-season state | `已確認`, `季節模式支持`, `條件式`, or `歷史／排除` for future seasonal/rotating items. Main pool may use the first two; `條件式` remains a labelled near-miss unless the user accepts it explicitly. |
 | Review expansion | Expanded / not expanded / unavailable; preserve `內容未展開` when applicable |
 | Scenario evidence | Exact product price and basis; venue budget band; nearest-station walk time or verified origin-to-store route; direct/indoor/transfer access; opening, stock, queue, and reservation friction; explicit local or branch-exclusive wording; award, signature, or established-shop signal; official current/announcement evidence kept separate from historical review evidence |
@@ -50,6 +53,7 @@ Keep these checks separate from the research ledger. They control how the eviden
 | Lead conclusion | Open with the recommendation and the decision-relevant limitation. Do not open with browser actions, search keywords, sort controls, page counts, or a research diary |
 | Decision lenses | State the applicable trade-offs as recommendations. Do not render the internal scenario map as a process explanation or create a second full ranking |
 | Future-month wording | Say whether the month is confirmed, supported by prior-year seasonality, conditional, or not confirmed. Never turn `今年未公告` into a current-year promise |
+| Result count | Match the requested Top N. Return fewer only when fewer candidates pass the evidence gates, and explain the shortfall |
 | Store naming | Use Traditional Chinese or a Taiwan-familiar transliteration. Let the Tabelog link carry the formal Japanese name |
 | Link placement | Embed Tabelog, official-site, and SNS links in the sentence that uses the source. Do not add a separate link appendix |
 | Format | First-person Traditional Chinese plain-text paragraphs. No Markdown headings, bullets, numbered lists, tables, bold, semicolons, or em dashes |

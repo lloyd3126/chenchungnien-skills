@@ -1,6 +1,6 @@
 ---
 name: tabelog-restaurant
-description: Inspect a public Tabelog restaurant detail page and its menu, seats, photos, reviews, rating distribution, map, and current reservation-availability fields through the Codex in-app browser. Use when a restaurant is already known or has been selected from a Tabelog result.
+description: Inspect a public Tabelog restaurant detail page and its menu, seats, photos, reviews, rating distribution, map, service and takeout evidence, future-date opening information, and current reservation-availability fields through the Codex in-app browser. Use when a restaurant is already known or has been selected from a Tabelog result. Return findings in Traditional Chinese by default.
 ---
 
 # Tabelog Restaurant
@@ -15,17 +15,25 @@ Start at the restaurant URL and re-read the current DOM. Do not rely on a cached
 
 1. Confirm the restaurant title and canonical visible breadcrumb. Capture the current restaurant URL and the page state.
 2. Read the top-level identity fields: name, rating, review count, save count if shown, station/area, genres, dinner/lunch budget, and the `店舗情報（詳細）` link.
-3. Read the detail table only for fields relevant to the user's request: reservation availability, address, transport, opening hours, budget, payment, invoice, service charge, seats, private room, charter, smoking, parking, space/equipment, children, languages, official links, and update/opening information.
+3. Read the detail table only for fields relevant to the user's request: reservation availability, address, transport, opening hours, budget, payment, invoice, service charge, seats, private room, charter, smoking, parking, space/equipment, children, languages, official links, update/opening information, and service flags. Keep `店家可外帶` separate from proof that the requested item is independently available for takeaway.
 4. Use the confirmed tabs as needed:
    - `トップ`: overview, notices, features, recent reviews and store details.
    - `座席`: seat types, photos/descriptions, and a possible seat reservation entry.
-   - `メニュー・コース`: courses, dishes, drinks, lunch, and menu photos.
+   - `メニュー・コース`: courses, dishes, drinks, lunch, and menu photos. For takeaway or item-specific requests, record whether the item is `已確認可外帶`, `近期外帶紀錄`, `僅店家標示外帶`, or `外帶未確認`.
    - `写真`: official/user photos, category, sort, size, and pagination.
    - `口コミ`: review search, meal type, sort, reviewer, visit date, ratings, photos, and store replies.
    - `平均・分布`: simple user-rating averages/distributions and spend distributions; distinguish these from the restaurant score.
    - `地図`: address, transport, map, Google Maps region, and nearby restaurants.
 5. For a current availability request, set only the requested date, party size, and time in the visible reservation widget, inspect the available state, and stop before `予約する` unless the user separately confirms that action. Availability is dynamic and may lead outside Tabelog.
-6. Verify every reported value against the current page. For reviews and photos, include the page's date/ordering context and warn that historical content may not reflect the current restaurant.
+6. For a future month or date, compare the current weekly schedule with facility or department-store holidays, temporary notices, and official seasonal information when exposed. Mark the result as `指定日期已確認`, `正常營業日推定`, `設施營業日依存`, or `指定日期未確認`; do not convert a regular schedule into a guarantee.
+7. Verify every reported value against the current page and record `last_checked_at`. For reviews and photos, include the page's date/ordering context and warn that historical content may not reflect the current restaurant. Use Traditional Chinese or a Taiwan-familiar transliteration for the user-facing name and product description, keeping the formal original in the Tabelog or official link.
+
+## Evidence and output contract
+
+- For each material claim, retain the source surface and URL, observation date, evidence freshness, confidence (`高`, `中`, or `低`), and one unresolved caveat.
+- A current menu or official page establishes a current listing, not same-day stock. A recent review establishes an actual historical purchase, not today's availability. State both when they differ.
+- Keep service dimensions independent: `外帶`, `內用`, and `預約` are separate fields. Never infer item-level takeaway from a reservation or vacancy control.
+- If the user requests multiple restaurants, preserve the requested `Top N`; do not silently reduce it to Top 3. Return fewer only when fewer candidates pass the stated evidence gates, and explain the missing candidates.
 
 ## Page and field semantics
 
@@ -47,7 +55,7 @@ Treat authenticated Tabelog as a separate variant. Revisit the restaurant top, d
 - Never submit a review, photo, save, mark-visited, booking, payment, or edit/delete action during exploration.
 - Do not expose phone numbers, personal reviewer data, hidden form tokens, cookies, or login information unless the user's task explicitly requires a visible public field.
 - Stop at CAPTCHA, safety interstitial, or an unclear external authentication/booking page.
-- State the retrieval time and query parameters for dynamic availability, prices, rankings, ratings, and counts.
+- State the retrieval date and relevant query parameters for dynamic availability, prices, rankings, ratings, counts, and future-date opening checks.
 
 ## Drift maintenance
 

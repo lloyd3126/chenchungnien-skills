@@ -1,6 +1,6 @@
 ---
 name: tabelog-search
-description: Search and filter public Tabelog restaurant listings through the Codex in-app browser. Use when the user wants restaurants by area, station, keyword, genre, budget, meal time, party size, scene, facilities, ranking, or current availability, and when safe form interaction or result verification is needed.
+description: Search and filter public Tabelog restaurant listings through the Codex in-app browser. Use when the user wants restaurants by area, station, keyword, genre, budget, meal time, party size, scene, facilities, ranking, takeout, a future date, or current availability, and when safe form interaction or result verification is needed. Return findings in Traditional Chinese by default.
 ---
 
 # Tabelog Search
@@ -32,8 +32,16 @@ If the user already has a restaurant or detail URL and wants its fields or subpa
    - `LstRev`: meal / operating-hour conditions such as `ランチ`.
    - visible condition links for Vポイント, 個室, 飲み放題, cards, parking, 食べ放題, children, pets, coupons, takeout, delivery, smoking, and space/equipment.
    - scene links such as family/children, date, girls' night, group party, or business entertainment.
-7. Use sorting, result pagination, and category breadcrumbs only when needed. Treat counts, rankings, prices, reviews, and availability as live query results, not stable facts.
+7. Use sorting, result pagination, and category breadcrumbs only when needed. Treat counts, rankings, prices, reviews, and availability as live query results, not stable facts. If the user asks for a ranked list, preserve the requested count as `Top N`; use `Top 3` only when no count is given. Resolve the score boundary for the requested N before stopping.
 8. Open representative result cards to inspect a restaurant with `$tabelog-restaurant`. Keep the current query context so the user can reproduce the result.
+
+## Takeout, date, ranking, and language contract
+
+- Treat a result-card or filter-level `テイクアウト` label as discovery evidence only. For a takeout request, verify the requested item's access separately from the store's generic service flag.
+- Classify takeout evidence as `已確認可外帶` when a current menu, official source, or exact recent purchase confirms the item can be taken away; `近期外帶紀錄` when a recent review records an actual purchase but the current menu is silent; `僅店家標示外帶` when only the store-level flag is visible; or `外帶未確認` when no useful item-level evidence is available. Only the first two are positive item-level evidence.
+- For a future month or date, inspect current opening hours, weekly schedule, facility or department-store holidays, temporary-closure notices, and official seasonal announcements when available. Report a likely schedule as a prediction, never as a guaranteed opening or stock state.
+- Maintain a small candidate record with the live score, review count, nearest station, observed distance, raw rank, qualified rank, `last_checked_at`, takeout evidence, freshness, confidence, and one concrete caveat. Keep live values in the task ledger, not in this skill.
+- User-facing output is Traditional Chinese by default. Translate shop and product names into Traditional Chinese or a Taiwan-familiar transliteration, using the Tabelog or official link for the formal original name. Keep original-language text only when it is needed for search or disambiguation.
 
 ## Form and result verification
 
@@ -52,7 +60,7 @@ After the public pass and its second-pass audit, ask whether the user wants prot
 ## Safety and freshness
 
 - Do not click final reservation, payment, save, mark-visited, publish, delete, or external confirmation actions as part of discovery.
-- Current result values and availability must be fetched during the task. For time-sensitive restaurant decisions, advise confirming directly with the restaurant.
+- Current result values and availability must be fetched during the task, and the answer should state the retrieval date or last-confirmed time when freshness changes the recommendation. For time-sensitive restaurant decisions, advise confirming directly with the restaurant.
 - Stop at CAPTCHA, safety interstitial, or an ambiguous third-party authentication page; do not bypass it.
 
 ## Drift maintenance
