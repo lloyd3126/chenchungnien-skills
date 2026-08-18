@@ -66,7 +66,7 @@
 | [vocus](sites/vocus/AGENTS.md) | 首頁／探索／搜尋／tag、文章／貼文／profile、公開沙龍與商品，以及 Studio 統計、內容、方案、會員、收益與設定唯讀檢視。 | 部分重型 feed／沙龍頁只有 DOM 或 partial 視覺證據；沙龍 room／商品詳情覆蓋為 partial，購買、會員變更、發布與 Studio 寫入操作刻意未執行。 |
 | [koding.school](sites/koding-school/references/exploration-checklist.md) | 課程搜尋／篩選／詳情與 lesson 類型；知識點／討論搜尋與 threads；作品、代表性 studio、profile、inbox 列表與帳號入口唯讀檢視。 | 專案編輯器、回收桶、工作室建立／移除、帳號更新、私訊本文、付款、訂單與訂閱仍未驗證。 |
 | [PokecaBook](sites/pokecabook/references/site-map.md) | 公開搜尋／分頁、賽事與內容分類、文章／詳細頁結構、牌組篩選、卡片採用率、Tier 與卡片清單頁。 | 未觀察到登入／帳戶分支；透過 X DM 詢問、reCAPTCHA、外部目的地與不可逆流程均未測試。 |
-| [Tabelog](sites/tabelog/references/site-map.md) | 餐廳搜尋、地區 autocomplete 與篩選、排序／分頁，以及餐廳詳情、菜單、照片、評論、評分、地圖與空位頁。 | 第三方認證、登入後導覽、收藏／已去過清單、評論編輯器、個人化推薦、會員排名、預約帳戶、實際訂位與付款仍未驗證或刻意未測。 |
+| [Tabelog](sites/tabelog/references/site-map.md) | 餐廳搜尋、地區 autocomplete 與篩選、排序／分頁，以及餐廳詳情、菜單、照片、評論、評分、地圖與空位頁；已具備代表性的餐食候選審核，包含日期排序評論、近一年窗口與季節性證據。 | 第三方認證、登入後導覽、收藏／已去過清單、評論編輯器、個人化推薦、會員排名、預約帳戶、實際訂位與付款仍未驗證或刻意未測；評論不代表完整覆蓋，商品即時庫存也不保證。 |
 
 證據狀態改變時，應先更新負責的網站套件，再於同一變更中同步更新兩個狀態欄。代表性驗證不等於完整覆蓋；暫時性網站故障與瀏覽器控制錯誤也必須和真正的功能不存在分開記錄。
 
@@ -192,9 +192,9 @@
 
   Skills: [`pokecabook-site-search`](skills/pokecabook-site-search) · [`pokecabook-content-research`](skills/pokecabook-content-research) · [`pokecabook-deck-analytics`](skills/pokecabook-deck-analytics)
 
-- **[Tabelog](sites/tabelog/AGENTS.md)** — 搜尋餐廳，並檢視餐廳詳情、菜單、照片、評論、地圖與空位。
+- **[Tabelog](sites/tabelog/AGENTS.md)** — 搜尋餐廳、檢視餐廳詳情，並以目前店舖資料與日期排序評論證據比較餐食候選。
 
-  Skills: [`tabelog-search`](skills/tabelog-search) · [`tabelog-restaurant`](skills/tabelog-restaurant)
+  Skills: [`tabelog-search`](skills/tabelog-search) · [`tabelog-restaurant`](skills/tabelog-restaurant) · [`tabelog-expert`](skills/tabelog-expert)
 
 ### 建立網站 Skills
 

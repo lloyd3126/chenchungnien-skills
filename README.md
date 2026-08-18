@@ -66,7 +66,7 @@ Across every package, state-changing actions—sign-in or sign-out, account edit
 | [vocus](sites/vocus/AGENTS.md) | Home/explore/search/tag pages, articles/posts/profiles, public salons and products, plus Studio statistics, content, plans, members, earnings and settings read-only. | Some heavy feed/salon pages have DOM-only or partial visual evidence; salon-room/product-detail coverage is partial, and purchasing, membership changes, publishing, and Studio mutations were intentionally not exercised. |
 | [koding.school](sites/koding-school/references/exploration-checklist.md) | Course search/filters/details and lesson variants; knowledge/discussion search and threads; projects, representative studio, profile, inbox list and account-entry surfaces read-only. | Project editor, recycle bin, studio creation/removal, account updates, private message bodies, payments, orders, and subscriptions remain unverified. |
 | [PokecaBook](sites/pokecabook/references/site-map.md) | Public search/pagination, tournament and content categories, article/detail structures, deck filters, card-adoption analysis, Tier and card-list pages. | No authenticated/account branch was observed; inquiry-by-X-DM, reCAPTCHA, external destinations, and irreversible workflows were not tested. |
-| [Tabelog](sites/tabelog/references/site-map.md) | Restaurant search with area/autocomplete and filters, sorting/pagination, and restaurant detail, menu, photo, review, rating, map and availability pages. | Third-party authentication, signed-in navigation, saved/visited lists, review editor, personalization, member rankings, reservation-account features, booking, and payment remain unverified or intentionally untested. |
+| [Tabelog](sites/tabelog/references/site-map.md) | Restaurant search with area/autocomplete and filters, sorting/pagination, and restaurant detail, menu, photo, review, rating, map and availability pages; representative food-candidate audits with date-sorted reviews, a recent-year window, and seasonal evidence. | Third-party authentication, signed-in navigation, saved/visited lists, review editor, personalization, member rankings, reservation-account features, booking, and payment remain unverified or intentionally untested; exhaustive review coverage and live stock are not guaranteed. |
 
 When evidence changes, update the owning site package first, then update both status columns in the same change. Keep representative verification distinct from exhaustive coverage, and keep transient outages or browser-control failures distinct from genuine feature absence.
 
@@ -192,9 +192,9 @@ The directory is organized by task domain first, then by platform or website pac
 
   Skills: [`pokecabook-site-search`](skills/pokecabook-site-search) · [`pokecabook-content-research`](skills/pokecabook-content-research) · [`pokecabook-deck-analytics`](skills/pokecabook-deck-analytics)
 
-- **[Tabelog](sites/tabelog/AGENTS.md)** — Search restaurants and inspect restaurant details, menus, photos, reviews, maps, and availability.
+- **[Tabelog](sites/tabelog/AGENTS.md)** — Search restaurants, inspect restaurant details, and compare food candidates using current store facts plus date-sorted review evidence.
 
-  Skills: [`tabelog-search`](skills/tabelog-search) · [`tabelog-restaurant`](skills/tabelog-restaurant)
+  Skills: [`tabelog-search`](skills/tabelog-search) · [`tabelog-restaurant`](skills/tabelog-restaurant) · [`tabelog-expert`](skills/tabelog-expert)
 
 ### Build Website Skills
 
