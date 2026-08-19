@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tabelog Restaurant"
+  short_description: "Inspect Tabelog details, menus, takeout, and dates."
+  default_prompt: "Use $tabelog-restaurant in the Codex in-app browser to inspect the known Tabelog restaurant, separate store-level and item-level takeout evidence, check future-date opening caveats, and present the result in Traditional Chinese."

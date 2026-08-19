@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "tabelog-expert": {
+      "source": "lloyd3126/chenchungnien-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tabelog-expert/SKILL.md",
+      "computedHash": "abea0e236b44e818883a48dda541d280d72f673634833a58543093cec6c504ab"
+    },
+    "tabelog-restaurant": {
+      "source": "lloyd3126/chenchungnien-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tabelog-restaurant/SKILL.md",
+      "computedHash": "ce2ea2a8519603a5a63afb4a9bca42ee9688fa744ffb404132538e6946e5ebf5"
+    },
+    "tabelog-search": {
+      "source": "lloyd3126/chenchungnien-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tabelog-search/SKILL.md",
+      "computedHash": "da15687388dba800bdead8e8a9655225736f37f69ef4afbbafc61c7aa44b4015"
+    }
+  }
+}

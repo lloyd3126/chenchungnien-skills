@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tabelog Search"
+  short_description: "Search Tabelog and verify takeout, dates, and ranked results."
+  default_prompt: "Use $tabelog-search in the Codex in-app browser to search Tabelog, preserve the requested Top N, verify item-level takeout and future-date caveats, and present the result in Traditional Chinese."
+
+policy:
+  allow_implicit_invocation: true
